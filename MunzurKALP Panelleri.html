@@ -1,0 +1,1082 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>MunzurKALP Panelleri</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&display=swap">
+<style>
+/* Düzen: sol menü + içerik. Kartsız; bölümler çizgiyle ayrılır. Tek vurgu: lacivert. Tek tema: beyaz. */
+:root{
+  --bg:#FFFFFF; --soft:#F5F6F8; --ink:#1B2430; --muted:#5C6675; --line:#DDE1E7; --line-2:#C5CBD4;
+  --accent:#0A2647; --base:#CBD2DC;
+  --ok:#1E7B4B; --warn:#A35F00; --crit:#B3261E; --info:#3F6A9A;
+  --font:'IBM Plex Sans','Segoe UI',system-ui,-apple-system,sans-serif;
+  color-scheme:light;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{background:var(--bg);color:var(--ink);font:14px/1.5 var(--font);-webkit-font-smoothing:antialiased}
+h1,h2,h3{font-family:var(--font);margin:0;text-wrap:balance}
+p{margin:0}
+button,input,select,textarea{font:inherit;color:inherit}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.ic{flex:none;vertical-align:-3px}
+.muted{color:var(--muted)}
+.num{font-variant-numeric:tabular-nums}
+
+/* kabuk */
+.app{display:grid;grid-template-columns:248px minmax(0,1fr);min-height:100vh}
+.side{border-right:1px solid var(--line);padding:24px 0 20px max(20px,env(safe-area-inset-left,0px));padding-right:20px;display:flex;flex-direction:column;gap:28px;position:sticky;top:0;align-self:start;height:100vh}
+.brand{display:flex;align-items:center;gap:12px;text-decoration:none;min-width:0}
+.brand img,.brand svg.mark{height:36px;width:auto;max-width:96px;object-fit:contain;display:block;flex:none}
+.brand b{display:block;font-size:16px;font-weight:600;line-height:1.2}
+.brand small{display:block;color:var(--muted);font-size:12.5px;line-height:1.3}
+.univ{max-height:44px;max-width:100%;object-fit:contain;object-position:left;margin-top:-12px}
+.nav{display:flex;flex-direction:column}
+.ni{display:block;padding:9px 0 9px 12px;margin-left:-12px;border-left:2px solid transparent;text-decoration:none;color:var(--muted);font-weight:500}
+.ni:hover{color:var(--ink)}
+.ni[aria-current="page"]{color:var(--accent);border-left-color:var(--accent);font-weight:600}
+.nav .gap{height:1px;background:var(--line);margin:12px 0}
+.clock-sel{margin-top:auto;display:grid;gap:4px;color:var(--muted);font-size:12.5px}
+.clock-sel select{width:100%}
+.main{padding:32px max(32px,env(safe-area-inset-right,0px)) 0 40px;min-width:0;max-width:1180px;width:100%}
+.page-h{display:flex;gap:16px;align-items:flex-start;justify-content:space-between;flex-wrap:wrap;margin-bottom:28px}
+.page-h h1{font-size:26px;font-weight:600;line-height:1.2}
+.page-h p{color:var(--muted);margin-top:4px}
+.hd-r{display:flex;align-items:center;gap:14px;color:var(--muted)}
+.hd-r .clock{font-size:20px;font-weight:500;color:var(--ink)}
+.foot{padding-block:48px 32px;color:var(--muted);font-size:12.5px}
+
+/* bölümler: kart değil, çizgiyle ayrılmış alanlar */
+.grid{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:40px 48px}
+.card{grid-column:span var(--span,6);min-width:0}
+.bare{grid-column:span 12;min-width:0}
+.card-h{display:flex;align-items:baseline;justify-content:space-between;gap:16px;padding-bottom:10px;border-bottom:1px solid var(--ink)}
+.card-h h2{font-size:15px;font-weight:600}
+.card-h .meta{color:var(--muted);font-size:12.5px;text-align:right}
+.card-b{min-width:0}
+@media (max-width:1100px){.card{grid-column:span 12}}
+
+/* özet şeridi */
+.kpis{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.kpi{padding:16px 20px;min-width:0}
+.kpi:first-child{padding-left:0}
+.kpi+.kpi{border-left:1px solid var(--line)}
+.kpi span{display:block;font-size:12.5px;color:var(--muted)}
+.kpi b{display:block;font-size:24px;font-weight:600;line-height:1.25;margin-top:2px;font-variant-numeric:tabular-nums}
+.kpi small{color:var(--muted);font-size:12.5px}
+@media (max-width:900px){.kpis{grid-template-columns:repeat(2,minmax(0,1fr))}.kpi:nth-child(odd){padding-left:0;border-left:0}.kpi:nth-child(n+3){border-top:1px solid var(--line)}}
+
+/* durum: yalnızca nokta ve metin */
+.st{display:inline-flex;align-items:center;gap:7px;font-size:13px;white-space:nowrap}
+.st::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--line-2);flex:none}
+.st.ok::before{background:var(--ok)} .st.warn::before{background:var(--warn)} .st.crit::before{background:var(--crit)} .st.info::before{background:var(--info)}
+.st.crit{color:var(--crit);font-weight:500}
+
+/* düğmeler */
+.btn{display:inline-flex;align-items:center;gap:6px;font-weight:500;font-size:13px;padding:7px 14px;border:1px solid var(--line-2);background:var(--bg);color:var(--ink);border-radius:2px;cursor:pointer;text-decoration:none;line-height:1.2}
+.btn:hover{border-color:var(--ink)}
+.btn.primary{background:var(--accent);color:#fff;border-color:var(--accent)}
+.btn.primary:hover{background:color-mix(in srgb,var(--accent) 88%,#fff)}
+.btn.danger{color:var(--crit)}
+.btn.sm{padding:4px 10px;font-size:12.5px}
+.btn[disabled]{opacity:.45;cursor:not-allowed}
+.actions{display:flex;gap:6px;flex-wrap:wrap}
+
+/* tablolar ve listeler */
+.tbl-wrap{overflow-x:auto}
+.tbl{width:100%;border-collapse:collapse;font-size:13.5px}
+.tbl th{font-size:12.5px;color:var(--muted);text-align:left;font-weight:500;padding:10px 16px 8px 0;border-bottom:1px solid var(--line);white-space:nowrap}
+.tbl td{padding:12px 16px 12px 0;border-bottom:1px solid var(--line);vertical-align:middle}
+.tbl tr:last-child td{border-bottom:0}
+.tbl td.r,.tbl th.r{text-align:right}
+.tbl th:last-child,.tbl td:last-child{padding-right:0}
+.tbl .sub{display:block;color:var(--muted);font-size:12.5px}
+.list{list-style:none;margin:0;padding:0}
+.list li{display:flex;gap:16px;justify-content:space-between;align-items:flex-start;padding:12px 0;border-bottom:1px solid var(--line)}
+.list li:last-child{border-bottom:0}
+.list li>div:first-child{min-width:0}
+.list li>.actions{flex-wrap:nowrap;flex:none}
+.list .t{font-weight:500}
+.list .s{color:var(--muted);font-size:12.5px}
+.empty{padding:20px 0;color:var(--muted)}
+.fn,.note{color:var(--muted);font-size:12.5px;max-width:64ch;margin-top:14px}
+
+/* çubuk ve grafik */
+.bar-row{display:grid;grid-template-columns:minmax(70px,150px) minmax(0,1fr) 92px;gap:16px;align-items:center;margin:14px 0}
+.bar-row .lab{font-size:13px}
+.bar-row .val{text-align:right;font-variant-numeric:tabular-nums;font-size:13px;font-weight:500}
+.bar{height:8px;background:var(--soft);position:relative;overflow:hidden}
+.bar .base{position:absolute;inset:0 auto 0 0;background:var(--base)}
+.bar .act{position:absolute;inset:0 auto 0 0;background:var(--accent)}
+.legend{display:flex;gap:4px 20px;flex-wrap:wrap;color:var(--muted);font-size:12.5px;margin-top:10px}
+.legend i{display:inline-block;width:10px;height:3px;margin-right:7px;vertical-align:3px}
+.stepper{display:inline-flex;align-items:center;gap:8px}
+.stepper b{min-width:48px;text-align:center;font-weight:500;font-variant-numeric:tabular-nums}
+.chart{width:100%;height:auto;display:block;overflow:visible}
+.chart text{fill:var(--muted);font:11px var(--font)}
+.chart .gl{stroke:var(--line);stroke-width:1}
+
+/* formlar */
+.field{display:grid;gap:4px;min-width:0}
+.field>span{font-size:12.5px;color:var(--muted)}
+input,select,textarea{background:var(--bg);border:1px solid var(--line-2);border-radius:2px;padding:7px 10px;width:100%;min-width:0}
+input:hover,select:hover,textarea:hover{border-color:var(--muted)}
+select.inl{width:auto;padding:4px 8px;font-size:13px}
+input[type="checkbox"]{width:auto;accent-color:var(--accent)}
+input[type="color"]{padding:2px;height:36px;width:64px}
+textarea{resize:vertical;min-height:84px}
+.form{display:grid;gap:14px}
+.row2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+.fgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:16px}
+.check{display:flex;gap:8px;align-items:center;font-size:13px}
+.subtabs{display:flex;gap:4px 24px;flex-wrap:wrap;margin-bottom:32px;border-bottom:1px solid var(--line)}
+.subtabs button{border:0;border-bottom:2px solid transparent;background:none;padding:8px 0;margin-bottom:-1px;font-weight:500;cursor:pointer;color:var(--muted)}
+.subtabs button:hover{color:var(--ink)}
+.subtabs button[aria-pressed="true"]{color:var(--accent);border-bottom-color:var(--accent);font-weight:600}
+.logo-prev{height:64px;min-width:64px;max-width:200px;border:1px dashed var(--line-2);display:grid;place-items:center;padding:8px;background:var(--soft)}
+.logo-prev img,.logo-prev svg{max-height:48px;max-width:100%}
+
+/* ana sayfa */
+.rolelist{list-style:none;margin:0 0 32px;padding:0;border-top:1px solid var(--ink)}
+.rolelist li{border-bottom:1px solid var(--line)}
+.rolelist a{display:grid;grid-template-columns:200px minmax(0,1fr);gap:24px;padding:18px 0;text-decoration:none}
+.rolelist .rn{font-size:16px;font-weight:600}
+.rolelist .rb{color:var(--muted)}
+.rolelist a:hover .rn{color:var(--accent);text-decoration:underline;text-underline-offset:4px}
+
+/* pencere ve bildirim */
+.modal{position:fixed;inset:0;background:rgba(27,36,48,.45);display:grid;place-items:center;z-index:50;padding:max(16px,env(safe-area-inset-top,0px)) max(16px,env(safe-area-inset-right,0px)) max(16px,env(safe-area-inset-bottom,0px)) max(16px,env(safe-area-inset-left,0px))}
+.sheet{background:var(--bg);width:100%;max-width:680px;max-height:100%;overflow:auto;padding:28px;display:grid;gap:18px;border-top:3px solid var(--accent)}
+.sheet h2{font-size:20px;font-weight:600}
+.frame{aspect-ratio:16/9;max-width:100%;background:#0B1226;position:relative;overflow:hidden;display:grid;place-items:center}
+.frame>svg{width:100%;height:100%;display:block}
+.frame.locked>svg{filter:blur(16px) brightness(.8)}
+.frame .lock{position:absolute;inset:0;display:grid;place-items:center;align-content:center;gap:10px;color:#C9D4E8;text-align:center;padding:12px}
+.kv{display:grid;grid-template-columns:auto 1fr;gap:6px 24px;font-size:13.5px;margin:0}
+.kv dt{color:var(--muted)} .kv dd{margin:0;font-weight:500}
+#toast{position:fixed;left:50%;transform:translateX(-50%);bottom:calc(20px + env(safe-area-inset-bottom,0px));background:var(--ink);color:#fff;padding:10px 16px;border-radius:2px;font-size:13px;z-index:60;max-width:calc(100% - 32px)}
+
+/* dar ekran: menü üste geçer */
+@media (max-width:820px){
+  .app{grid-template-columns:minmax(0,1fr)}
+  .side{position:static;height:auto;border-right:0;border-bottom:1px solid var(--line);padding:16px max(16px,env(safe-area-inset-right,0px)) 0 max(16px,env(safe-area-inset-left,0px));gap:12px}
+  .univ{margin-top:0}
+  .nav{flex-direction:row;overflow-x:auto;gap:20px;scrollbar-width:none}
+  .nav .gap{display:none}
+  .ni{padding:8px 0;margin:0;border-left:0;border-bottom:2px solid transparent;white-space:nowrap}
+  .ni[aria-current="page"]{border-bottom-color:var(--accent)}
+  .clock-sel{margin:0;padding-bottom:12px;grid-template-columns:auto 1fr;align-items:center;gap:10px}
+  .main{padding:24px max(16px,env(safe-area-inset-right,0px)) 0 max(16px,env(safe-area-inset-left,0px))}
+  .grid{gap:32px}
+  .row2{grid-template-columns:1fr}
+  .rolelist a{grid-template-columns:1fr;gap:2px}
+  .bar-row{grid-template-columns:78px minmax(0,1fr) 78px;gap:10px}
+  .card-h{flex-wrap:wrap;gap:2px 16px}
+  .card-h .meta{text-align:left}
+}
+@media (prefers-reduced-motion:no-preference){.btn,.ni{transition:border-color .15s,color .15s}}
+</style>
+<div id="app"></div>
+<div id="toast" role="status" hidden></div>
+<script>
+/* =====================================================================
+   MunzurKALP panelleri · prototip
+   1 Yardımcılar · 2 Varsayılanlar · 3 Saklama · 4 Simülasyon · 5 Grafikler
+   ===================================================================== */
+(function () {
+'use strict';
+document.documentElement.lang = 'tr';
+
+/* ---------- 1. Yardımcılar ---------- */
+const $ = (s, r = document) => r.querySelector(s);
+const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+const pad = n => String(n).padStart(2, '0');
+const hhmm = m => pad(Math.floor(((m % 1440) + 1440) % 1440 / 60)) + ':' + pad(Math.floor(m) % 60);
+const toMin = s => { const [h, m] = String(s).split(':').map(Number); return (h || 0) * 60 + (m || 0); };
+const fmt = (n, d = 0) => Number(n).toLocaleString('tr-TR', { minimumFractionDigits: d, maximumFractionDigits: d });
+const tl = n => fmt(Math.round(n / 10) * 10) + ' TL';
+const clamp = (v, a, b) => Math.min(b, Math.max(a, v));
+const clone = o => JSON.parse(JSON.stringify(o));
+const uid = p => p + Math.random().toString(36).slice(2, 7);
+function hash(str) { let h = 2166136261; for (let i = 0; i < str.length; i++) { h ^= str.charCodeAt(i); h = Math.imul(h, 16777619); } return h >>> 0; }
+const rnd = key => hash(key) / 4294967296;
+function dayKey(offset = 0) { const d = new Date(); d.setDate(d.getDate() + offset); return d.getFullYear() + '-' + pad(d.getMonth() + 1) + '-' + pad(d.getDate()); }
+const getPath = (o, p) => p.split('.').reduce((a, k) => (a == null ? a : a[k]), o);
+function setPath(o, p, v) { const k = p.split('.'); let a = o; for (let i = 0; i < k.length - 1; i++) a = a[k[i]]; a[k[k.length - 1]] = v; }
+function merge(base, over) {
+  if (over === undefined) return base;
+  if (Array.isArray(base) || base === null || typeof base !== 'object') return over;
+  const out = { ...base };
+  for (const k in over) out[k] = k in base ? merge(base[k], over[k]) : over[k];
+  return out;
+}
+
+const ICONS = {
+  bolt: 'M13 2 4 14h7l-1 8 9-12h-7l1-8z',
+  building: 'M4 21V5l8-3 8 3v16M9 21v-4h6v4M8 9h.01M12 9h.01M16 9h.01M8 13h.01M12 13h.01M16 13h.01',
+  shield: 'M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6l8-3z',
+  clock: 'M12 7v5l3 2M12 21a9 9 0 1 0 0-18 9 9 0 0 0 0 18z',
+  bell: 'M6 9a6 6 0 1 1 12 0c0 5 2 6 2 6H4s2-1 2-6M10 19a2 2 0 0 0 4 0',
+  sliders: 'M4 7h10M18 7h2M4 17h2M10 17h10M14 5v4M6 15v4',
+  check: 'M5 12.5l4.5 4.5L19 7.5',
+  x: 'M6 6l12 12M18 6L6 18',
+  thermo: 'M10 14V5a2 2 0 0 1 4 0v9a4 4 0 1 1-4 0z',
+  users: 'M16 20v-1a4 4 0 0 0-4-4H7a4 4 0 0 0-4 4v1M9.5 11a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7zM21 20v-1a4 4 0 0 0-3-3.9M16 4.2a3.5 3.5 0 0 1 0 6.6',
+  chip: 'M7 7h10v10H7zM10 3v4M14 3v4M10 17v4M14 17v4M3 10h4M3 14h4M17 10h4M17 14h4',
+  leaf: 'M5 19c0-8 5-14 15-14 0 10-6 15-14 15M5 19c2-5 5-8 9-10',
+  file: 'M7 3h7l5 5v13H7zM14 3v5h5M10 13h6M10 17h6',
+  lock: 'M6 11h12v9H6zM8.5 11V8a3.5 3.5 0 0 1 7 0v3',
+  eye: 'M2 12s4-7 10-7 10 7 10 7-4 7-10 7S2 12 2 12zM12 15a3 3 0 1 0 0-6 3 3 0 0 0 0 6z',
+  arrow: 'M5 12h14M13 6l6 6-6 6',
+  up: 'M6 15l6-6 6 6', down: 'M6 9l6 6 6-6',
+  plus: 'M12 5v14M5 12h14', trash: 'M4 7h16M9 7V4h6v3M6 7l1 13h10l1-13',
+  user: 'M12 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8zM4 21a8 8 0 0 1 16 0',
+  graduation: 'M2 9l10-5 10 5-10 5zM6 11.5V16c0 1.5 3 3 6 3s6-1.5 6-3v-4.5',
+  server: 'M4 5h16v6H4zM4 13h16v6H4zM8 8h.01M8 16h.01',
+  doc: 'M7 3h10v18H7zM10 8h4M10 12h4M10 16h2'
+};
+const icon = (n, s = 18) => `<svg class="ic" width="${s}" height="${s}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="${ICONS[n] || ''}"/></svg>`;
+const pill = (t, k = 'neutral') => `<span class="st ${k}">${esc(t)}</span>`;
+
+/* ---------- 2. Varsayılanlar (Bilgi İşlem panelinden değiştirilebilir) ---------- */
+const ROLES = [
+  { id: 'hoca', name: 'Öğretim Üyesi', icon: 'graduation', blurb: 'Derslerim, odalarım, kapatmayı erteleme, mesai dışı çalışma talebi.' },
+  { id: 'dekan', name: 'Dekan', icon: 'building', blurb: 'Fakülte tüketimi, kat bazlı rapor, onay bekleyen talepler, hedefler.' },
+  { id: 'guvenlik', name: 'Güvenlik', icon: 'shield', blurb: 'Mesai dışı alarmlar, izinli çalışmalar, görüntü erişim kaydı.' },
+  { id: 'rektor', name: 'Rektör', icon: 'leaf', blurb: 'Kampüs geneli tasarruf, geri ödeme, yol haritası ve kararlar.' },
+  { id: 'bilgi-islem', name: 'Bilgi İşlem', icon: 'chip', blurb: 'Düğümler, kurallar, logolar, paneller, yetkiler ve kullanıcılar.' }
+];
+const roleName = id => (ROLES.find(r => r.id === id) || {}).name || id;
+
+const TYPES = {
+  derslik: { label: 'Derslik', base: 1.8, p: .72, hours: [[540, 720], [780, 1020]] },
+  laboratuvar: { label: 'Laboratuvar', base: 4.2, p: .85, hours: [[540, 1080]] },
+  kutuphane: { label: 'Kütüphane', base: 3.0, p: .9, hours: [[480, 1320]] },
+  yemekhane: { label: 'Yemekhane / Kantin', base: 7.5, p: .85, hours: [[660, 840], [1020, 1140]] },
+  atolye: { label: 'Atölye', base: 6.0, p: .7, hours: [[540, 1020]] },
+  ofis: { label: 'Ofis', base: .7, p: .75, hours: [[510, 1050]] },
+  salon: { label: 'Salon', base: 2.6, p: .45, hours: [[540, 1020]] },
+  sogukhat: { label: 'Soğuk hat', base: 1.2, always: true }
+};
+
+const DEFAULTS = {
+  brand: { univ: 'Munzur Üniversitesi', system: 'MunzurKALP', tagline: 'Akıllı Kampüs Enerji Yönetimi', accent: '#0A2647', logoUniv: null, logoSystem: null, footer: 'Prototip sürüm. Tüm veriler simülasyondur ve gerçek ölçüm değildir.' },
+  params: {
+    emptyMinutes: 15, workStart: '08:00', workEnd: '18:00', co2High: 1000, anomalyKw: 1.0, tariff: 4, co2Factor: 0.45,
+    investment: 13000, pilotMonth: 4, falseCloseTarget: 2, alarmTargetMin: 10, captureTarget: 60, manualHoldMin: 120
+  },
+  scenarios: [
+    { id: 'kotumser', name: 'Kötümser (%30)', saving: 7000 },
+    { id: 'gercekci', name: 'Gerçekçi (%60)', saving: 14000 },
+    { id: 'iyimser', name: 'İyimser (%80)', saving: 19000 }
+  ],
+  buildings: [
+    { id: 'mf', name: 'Mühendislik Fakültesi' }, { id: 'fef', name: 'Fen-Edebiyat Fakültesi' },
+    { id: 'lib', name: 'Merkez Kütüphane' }, { id: 'kan', name: 'Yemekhane ve Kantin' },
+    { id: 'rek', name: 'Rektörlük Binası' }, { id: 'atl', name: 'Milli Teknoloji Atölyesi' }
+  ],
+  rooms: [
+    { id: 'mf-lab1', name: 'Bilgisayar Lab-1 (Pilot)', building: 'mf', floor: 1, level: 1, type: 'laboratuvar', capacity: 30 },
+    { id: 'mf-lab2', name: 'Bilgisayar Lab-2', building: 'mf', floor: 1, level: 1, type: 'laboratuvar', capacity: 28 },
+    { id: 'mf-d101', name: 'D-101', building: 'mf', floor: 1, level: 1, type: 'derslik', capacity: 60 },
+    { id: 'mf-d203', name: 'D-203', building: 'mf', floor: 2, level: 1, type: 'derslik', capacity: 80 },
+    { id: 'mf-d204', name: 'D-204', building: 'mf', floor: 2, level: 1, type: 'derslik', capacity: 50 },
+    { id: 'mf-sem', name: 'Seminer Salonu', building: 'mf', floor: 0, level: 1, type: 'salon', capacity: 120 },
+    { id: 'mf-h205', name: 'H-205 Öğretim Üyesi Odası', building: 'mf', floor: 2, level: 0, type: 'ofis', capacity: 1 },
+    { id: 'mf-h206', name: 'H-206 Öğretim Üyesi Odası', building: 'mf', floor: 2, level: 0, type: 'ofis', capacity: 1 },
+    { id: 'mf-dek', name: 'Dekanlık Ofisi', building: 'mf', floor: 3, level: 0, type: 'ofis', capacity: 2 },
+    { id: 'mf-mem', name: 'Dekanlık Memur Odası', building: 'mf', floor: 3, level: 0, type: 'ofis', capacity: 4 },
+    { id: 'fef-d12', name: 'D-12', building: 'fef', floor: 1, level: 1, type: 'derslik', capacity: 70 },
+    { id: 'fef-d14', name: 'D-14', building: 'fef', floor: 1, level: 1, type: 'derslik', capacity: 70 },
+    { id: 'fef-kim', name: 'Kimya Laboratuvarı', building: 'fef', floor: 0, level: 1, type: 'laboratuvar', capacity: 24 },
+    { id: 'fef-h101', name: 'H-101 Öğretim Üyesi Odası', building: 'fef', floor: 1, level: 0, type: 'ofis', capacity: 1 },
+    { id: 'lib-oku', name: 'Okuma Salonu', building: 'lib', floor: 1, level: 1, type: 'kutuphane', capacity: 220 },
+    { id: 'lib-grp', name: 'Grup Çalışma-3', building: 'lib', floor: 2, level: 1, type: 'kutuphane', capacity: 10 },
+    { id: 'lib-ars', name: 'Arşiv Odası', building: 'lib', floor: 0, level: 0, type: 'ofis', capacity: 2 },
+    { id: 'kan-yem', name: 'Yemekhane Salonu', building: 'kan', floor: 0, level: 1, type: 'yemekhane', capacity: 300 },
+    { id: 'kan-sog', name: 'Soğuk Hat (Buzdolapları)', building: 'kan', floor: 0, level: 1, type: 'sogukhat', capacity: 1 },
+    { id: 'kan-kan', name: 'Kantin', building: 'kan', floor: 0, level: 1, type: 'yemekhane', capacity: 80 },
+    { id: 'rek-ofis', name: 'Rektör Ofisi', building: 'rek', floor: 2, level: 0, type: 'ofis', capacity: 2 },
+    { id: 'rek-sen', name: 'Senato Salonu', building: 'rek', floor: 1, level: 1, type: 'salon', capacity: 40 },
+    { id: 'atl-cnc', name: 'CNC ve 3D Yazıcı Atölyesi', building: 'atl', floor: 0, level: 1, type: 'atolye', capacity: 20 },
+    { id: 'atl-ana', name: 'Ana Atölye', building: 'atl', floor: 0, level: 1, type: 'atolye', capacity: 40 }
+  ],
+  panels: {
+    hoca: {
+      title: 'Öğretim Üyesi Paneli', person: 'Öğretim Üyesi (örnek hesap)', unit: 'Bilgisayar Mühendisliği',
+      rooms: ['mf-lab1', 'mf-d203', 'mf-h205'],
+      courses: [
+        { code: 'BLM-301', name: 'Gömülü Sistemler', room: 'mf-lab1', s: '09:00', e: '11:50' },
+        { code: 'BLM-205', name: 'Veri Yapıları', room: 'mf-d203', s: '13:00', e: '15:50' },
+        { code: 'BLM-412', name: 'IoT ve Yapay Zekâ', room: 'mf-lab1', s: '16:00', e: '17:50' }
+      ]
+    },
+    dekan: { title: 'Dekan Paneli', person: 'Dekan (örnek hesap)', unit: 'Mühendislik Fakültesi', building: 'mf' },
+    guvenlik: { title: 'Güvenlik Paneli', person: 'Nöbetçi Amir (örnek hesap)', unit: 'Güvenlik Birimi' },
+    rektor: { title: 'Rektör Paneli', person: 'Rektör (örnek hesap)', unit: 'Rektörlük' },
+    'bilgi-islem': { title: 'Bilgi İşlem Paneli', person: 'Sistem Yöneticisi (örnek hesap)', unit: 'Bilgi İşlem Daire Başkanlığı' }
+  },
+  roadmap: [
+    { id: 'f0', name: 'Faz 0 · Hazırlık', period: '2 hafta', status: 'tamam', progress: 100, desc: 'İhtiyaç analizi, KVKK izinleri ve donanım tedariki.' },
+    { id: 'f1', name: 'Faz 1 · Pilot', period: '1-2 ay', status: 'devam', progress: 55, desc: 'Bilgisayar laboratuvarında 5 düğümlü baseline ölçümü ve aktif sistem testi.' },
+    { id: 'f2', name: 'Faz 2 · Bina', period: '3-6 ay', status: 'plan', progress: 0, desc: 'Mühendislik binasına entegrasyon, yapay zekâ modülü, Telegram bot ve kamera doğrulama.' },
+    { id: 'f3', name: 'Faz 3 · Kampüs', period: '2. yıl', status: 'plan', progress: 0, desc: 'Kantin, kütüphane, atölye, yurt ve dış aydınlatmanın merkezi sisteme bağlanması.' }
+  ],
+  decisions: [
+    { id: 'd1', title: 'Faz 2 geçişi', detail: 'Pilot sonuçları hedefe ulaştığında mühendislik binasına genişleme. Maliyet düğüm sayısına göre netleşir.' },
+    { id: 'd2', title: 'Kamera aydınlatma metni ve tabelaları', detail: 'Seviye 1 alanlarda KVKK kapsamında bilgilendirme metni ve tabela yerleşimi.' },
+    { id: 'd3', title: 'Mesai dışı güvenlik modu politikası', detail: 'Mesai saatleri ve alarm karesi saklama süresinin hukuk birimiyle belirlenmesi.' }
+  ],
+  privacy: [
+    { id: 'p1', text: 'Seviye 0 alanlarda (öğretim üyesi, dekanlık, memur odaları) kamera yok', state: 'ok' },
+    { id: 'p2', text: 'Görüntü cihaz içinde işlenir, ağa çıkmaz; çıktı yalnızca kişi sayısıdır', state: 'ok' },
+    { id: 'p3', text: 'Normal mesaide kayıt yok, yüz tanıma ve davranış analizi yok', state: 'ok' },
+    { id: 'p4', text: 'Görüntüyü yalnızca güvenlik personeli açar, her açılış kaydedilir', state: 'ok' },
+    { id: 'p5', text: 'Aydınlatma metni ve tabelalar', state: 'decision:d2' },
+    { id: 'p6', text: 'Alarm karesi saklama süresi (hukuk birimi ve KVKK sorumlusu)', state: 'decision:d3' }
+  ],
+  users: [
+    { id: 'u1', name: 'Öğretim Üyesi (örnek)', role: 'hoca', unit: 'Bilgisayar Müh.', active: true },
+    { id: 'u2', name: 'Dekan (örnek)', role: 'dekan', unit: 'Mühendislik Fakültesi', active: true },
+    { id: 'u3', name: 'Nöbetçi Amir (örnek)', role: 'guvenlik', unit: 'Güvenlik Birimi', active: true },
+    { id: 'u4', name: 'Rektör (örnek)', role: 'rektor', unit: 'Rektörlük', active: true },
+    { id: 'u5', name: 'Sistem Yöneticisi (örnek)', role: 'bilgi-islem', unit: 'Bilgi İşlem', active: true }
+  ],
+  services: [
+    { id: 'mqtt', name: 'Mosquitto MQTT broker', detail: 'TLS + parola, ayrı IoT ağı (VLAN)', ms: 12 },
+    { id: 'api', name: 'Flask API', detail: 'Doğrulama ve kayıt', ms: 38 },
+    { id: 'db', name: 'Veritabanı (SQLite pilot)', detail: '30 sn çözünürlük, 90 gün ham veri', ms: 6 },
+    { id: 'rules', name: 'Kural motoru', detail: 'Dakikada bir oda durumu', ms: 21 },
+    { id: 'ai', name: 'Yapay zekâ işi (gece)', detail: 'Isolation Forest + tüketim tahmini', ms: 0 },
+    { id: 'bot', name: 'Telegram botu', detail: 'Anlık uyarı, "Şimdi kapat"', ms: 140 }
+  ]
+};
+
+/* ---------- 3. Saklama ---------- */
+const KEYS = { cfg: 'mk.cfg.2', rt: 'mk.rt.2', ui: 'mk.ui.2' };
+const read = k => { try { return JSON.parse(localStorage.getItem(k)); } catch { return null; } };
+const write = (k, v) => { try { localStorage.setItem(k, JSON.stringify(v)); } catch { /* depolama kapalı */ } };
+
+function freshRuntime() {
+  return {
+    holds: {}, setpoints: {}, alarms: {}, decisions: {}, secMode: {}, nodesOff: {}, serviceDown: {},
+    wrongClose: [{ day: dayKey(-2), room: 'mf-d101' }],
+    responseTimes: [6.5, 7, 5.5, 8, 6, 7.5],
+    requests: [
+      { id: 'r1', type: 'mesai', room: 'mf-lab1', who: 'Öğretim Üyesi', start: '18:00', end: '22:00', text: 'Bitirme projesi deney düzeneği', status: 'onaylandi', by: 'Dekan', at: '09:40' },
+      { id: 'r2', type: 'mesai', room: 'mf-lab2', who: 'Öğretim Üyesi', start: '18:00', end: '21:00', text: 'Sunucu bakımı ve imaj güncelleme', status: 'bekliyor', at: '10:05' },
+      { id: 'r3', type: 'ariza', room: 'mf-d204', who: 'Öğretim Üyesi', text: 'Klima çalışırken fan sesi yapıyor', status: 'bekliyor', at: '08:55' }
+    ],
+    audit: [
+      { t: '08:12', who: 'Güvenlik', kind: 'sistem', text: 'Güvenlik modu kapatıldı (mesai başladı)' },
+      { t: '07:58', who: 'Sistem', kind: 'sistem', text: 'Gözlem modu raporu oluşturuldu' }
+    ]
+  };
+}
+let CFG = merge(clone(DEFAULTS), read(KEYS.cfg) || {});
+let RT = merge(freshRuntime(), read(KEYS.rt) || {});
+let UI = merge({ clock: 'live', biTab: 'overview', biRole: 'hoca', confirmReset: false, role: null }, read(KEYS.ui) || {});
+const saveCfg = () => write(KEYS.cfg, CFG);
+const saveRt = () => write(KEYS.rt, RT);
+const saveUi = () => write(KEYS.ui, { clock: UI.clock, biTab: UI.biTab, biRole: UI.biRole });
+
+const CLOCKS = [['live', 'Canlı saat'], ['630', '10:30 · gündüz'], ['840', '14:00 · öğleden sonra'], ['1170', '19:30 · akşam'], ['135', '02:15 · gece']];
+function nowMin() { if (UI.clock !== 'live') return Number(UI.clock); const d = new Date(); return d.getHours() * 60 + d.getMinutes(); }
+const isWork = t => t >= toMin(CFG.params.workStart) && t < toMin(CFG.params.workEnd);
+
+function audit(who, kind, text) {
+  RT.audit.unshift({ t: hhmm(nowMin()), who, kind, text });
+  RT.audit = RT.audit.slice(0, 120);
+}
+
+/* ---------- 4. Simülasyon ----------
+   Oda durum makinesi (sunumdaki durumlar): kullanımda, boş-bekleme, otomatik kapatıldı,
+   manuel (2 saat), arıza (güvenli varsayılan), ve güvenlik modunda alarm / izinli çalışma. */
+const roomById = id => CFG.rooms.find(r => r.id === id);
+const buildingName = id => (CFG.buildings.find(b => b.id === id) || {}).name || id;
+const floorName = f => (f === 0 ? 'Zemin kat' : f + '. kat');
+const isL1 = r => Number(r.level) === 1;
+
+function activePermit(roomId, t) {
+  return RT.requests.find(q => q.type === 'mesai' && q.status === 'onaylandi' && q.room === roomId && t >= toMin(q.start) && t < toMin(q.end));
+}
+
+function roomState(room, tod, day = dayKey(0)) {
+  const T = TYPES[room.type] || TYPES.derslik, P = CFG.params;
+  const base = T.base;
+  const slot = Math.floor(tod / 30), seed = room.id + '|' + day + '|' + slot;
+  const r1 = rnd(seed + 'a'), r2 = rnd(seed + 'b'), r3 = rnd(seed + 'c');
+  const L1 = isL1(room), today = day === dayKey(0), mode = today ? RT.secMode[room.building] : null;
+  const work = mode === 'acik' ? false : mode === 'kapali' ? true : isWork(tod);
+  const inSched = T.always || T.hours.some(([s, e]) => tod >= s && tod < e);
+  const st = { phase: 'kapali', people: L1 ? 0 : null, kw: base * .04, baselineKw: base * .04, remaining: 0, det: null, conf: null };
+
+  if (T.always) { st.phase = 'surekli'; st.kw = st.baselineKw = base * (.9 + .2 * r3); st.people = null; }
+  else if (inSched) {
+    if (r1 < T.p) {
+      st.phase = 'dolu'; st.people = L1 ? Math.max(1, Math.round(room.capacity * (.2 + .65 * r2))) : 1;
+      st.kw = st.baselineKw = base * (.55 + .45 * r3);
+    } else {
+      const empty = Math.floor(r2 * 40) + 1;
+      if (empty >= P.emptyMinutes) { st.phase = 'kapandi'; st.kw = base * .05; st.baselineKw = base * .75; }
+      else { st.phase = 'bekleme'; st.remaining = P.emptyMinutes - empty; st.kw = st.baselineKw = base * .75; }
+    }
+  } else if (r1 < .10) { st.phase = 'unutulmus'; st.kw = base * .2; st.baselineKw = base * .5; }
+  else if (!work && r1 < (L1 ? .22 : .15)) {
+    st.phase = 'alarm'; st.people = L1 ? 1 : null; st.kw = st.baselineKw = base * .3;
+    st.det = slot * 30 + Math.floor(r2 * 25); st.conf = Math.round(86 + r3 * 12);
+  }
+
+  if (day === dayKey(0)) {
+    if (st.det != null) st.det = Math.min(st.det, tod);
+    const hold = RT.holds[room.id];
+    if (hold && hold > tod && ['kapandi', 'bekleme'].includes(st.phase)) { st.phase = 'erteli'; st.kw = st.baselineKw = base * .6; }
+    if (['alarm', 'kapali'].includes(st.phase) && activePermit(room.id, tod)) { st.phase = 'izinli'; st.people = L1 ? 1 : null; st.kw = st.baselineKw = base * .55; }
+    if (RT.nodesOff[room.id]) { st.phase = 'ariza'; st.kw = st.baselineKw = base * .6; }
+  }
+  const sp = RT.setpoints[room.id];
+  st.temp = +(sp && st.phase === 'dolu' ? sp - .5 + r3 * .8 : (T.always ? 3 + r2 * 2.5 : 18.5 + (st.phase === 'dolu' ? 3.2 : 1.2) + r3 * 1.4)).toFixed(1);
+  st.co2 = Math.round(430 + (L1 && st.people ? st.people / room.capacity * 900 : 0) + r2 * 40);
+  st.light = ['dolu', 'bekleme', 'erteli', 'unutulmus', 'izinli', 'ariza'].includes(st.phase);
+  return st;
+}
+const alarmKey = (room, st, day = dayKey(0)) => room.id + '|' + day + '|' + Math.floor(st.det / 30);
+const kwNow = (room, st) => st.kw * (1 + .035 * Math.sin(Date.now() / 5000 + (hash(room.id) % 7)));
+
+const PHASE = {
+  dolu: ['Kullanımda', 'ok'], bekleme: ['Boş, kapanış bekliyor', 'warn'], kapandi: ['Otomatik kapatıldı', 'info'],
+  unutulmus: ['Açık unutulmuş', 'warn'], alarm: ['Alarm', 'crit'], izinli: ['İzinli çalışma', 'info'],
+  erteli: ['Manuel mod', 'info'], kapali: ['Kapalı', 'neutral'], surekli: ['Sürekli yük', 'neutral'], ariza: ['Arıza (güvenli varsayılan)', 'warn']
+};
+const phasePill = st => pill(PHASE[st.phase][0] + (st.phase === 'bekleme' ? ` · ${st.remaining} dk` : ''), PHASE[st.phase][1]);
+
+function totals(rooms, day, upTo = 1439) {
+  let actual = 0, baseline = 0, residual = 0, idleHours = 0;
+  for (const r of rooms) for (let t = 15; t <= upTo; t += 30) {
+    const s = roomState(r, t, day);
+    actual += s.kw * .5; baseline += s.baselineKw * .5;
+    if (s.phase === 'bekleme' || s.phase === 'unutulmus') { residual += s.kw * .5; idleHours += .5; }
+  }
+  const saved = baseline - actual;
+  return { actual, baseline, saved, residual, idleHours, capture: saved / Math.max(saved + residual, .001) * 100 };
+}
+function weekSeries(rooms) {
+  const out = [];
+  for (let i = 7; i >= 1; i--) {
+    const d = new Date(); d.setDate(d.getDate() - i);
+    const t = totals(rooms, dayKey(-i));
+    out.push({ label: ['Paz', 'Pzt', 'Sal', 'Çar', 'Per', 'Cum', 'Cmt'][d.getDay()], actual: t.actual, baseline: t.baseline });
+  }
+  return out;
+}
+function eventsFor(rooms, now, limit = 8) {
+  const out = [], day = dayKey(0);
+  for (let slot = Math.floor(now / 30); slot >= 0 && out.length < 80; slot--) {
+    for (const r of rooms) {
+      const s = roomState(r, Math.min(now, slot * 30 + 15), day);
+      if (!['kapandi', 'unutulmus', 'alarm'].includes(s.phase)) continue;
+      const t = Math.min(now, slot * 30 + Math.floor(rnd(r.id + day + slot + 't') * 28));
+      out.push({ t, room: r, phase: s.phase });
+    }
+  }
+  return out.sort((a, b) => b.t - a.t).slice(0, limit);
+}
+function eventText(e) {
+  const P = CFG.params;
+  if (e.phase === 'kapandi') return [`${e.room.name}: ${P.emptyMinutes} dk boş kaldı, otomatik kapatıldı`, 'info'];
+  if (e.phase === 'unutulmus') return [`${e.room.name}: boşta çalışan cihaz, Telegram uyarısı gönderildi`, 'warn'];
+  return [`${e.room.name}: mesai dışı hareket algılandı`, 'crit'];
+}
+function currentAlarms(rooms, now) {
+  const day = dayKey(0), out = [];
+  for (const r of rooms) {
+    const s = roomState(r, now, day);
+    if (s.phase === 'alarm') out.push({ room: r, st: s, key: alarmKey(r, s, day) });
+  }
+  return out;
+}
+function metrics() {
+  const P = CFG.params, now = nowMin();
+  const wk = RT.wrongClose.filter(w => w.day >= dayKey(-6)).length;
+  const rts = RT.responseTimes, resp = rts.reduce((a, b) => a + b, 0) / rts.length;
+  const t = totals(CFG.rooms, dayKey(0), now);
+  return { wrongClose: wk, response: resp, capture: t.capture, idleHours: t.idleHours, today: t };
+}
+
+/* ---------- 5. Grafikler ---------- */
+function niceMax(v) { const p = Math.pow(10, Math.floor(Math.log10(Math.max(v, 1e-9)))); const n = v / p; return (n <= 1 ? 1 : n <= 2 ? 2 : n <= 5 ? 5 : 10) * p; }
+function lineChart(series, labels, { w = 560, h = 230, unit = '', decimals = 0 } = {}) {
+  const m = { l: 56, r: 12, t: 12, b: 26 }, iw = w - m.l - m.r, ih = h - m.t - m.b;
+  const all = series.flatMap(s => s.data), hi = Math.max(0, ...all), lo = Math.min(0, ...all);
+  const stp = niceMax(((hi - lo) || 1) / 4), max = Math.ceil(hi / stp) * stp, min = Math.floor(lo / stp) * stp, span = (max - min) || 1;
+  const x = i => m.l + (labels.length === 1 ? iw / 2 : i * iw / (labels.length - 1)), y = v => m.t + ih - (v - min) / span * ih;
+  let g = '';
+  for (let v = min; v <= max + stp / 2; v += stp) g += `<line class="gl" x1="${m.l}" x2="${w - m.r}" y1="${y(v)}" y2="${y(v)}"/><text x="${m.l - 8}" y="${y(v) + 4}" text-anchor="end">${fmt(v, decimals)}</text>`;
+  if (min < 0) g += `<line x1="${m.l}" x2="${w - m.r}" y1="${y(0)}" y2="${y(0)}" stroke="var(--muted)" stroke-width="1.2"/>`;
+  const step = Math.ceil(labels.length / 8);
+  labels.forEach((l, i) => { if (i % step === 0 || i === labels.length - 1) g += `<text x="${x(i)}" y="${h - 6}" text-anchor="middle">${esc(l)}</text>`; });
+  const lines = series.map(s => {
+    const d = s.data.map((v, i) => (i ? 'L' : 'M') + x(i).toFixed(1) + ' ' + y(v).toFixed(1)).join('');
+    const last = s.data.length - 1;
+    return `<path d="${d}" fill="none" stroke="${s.color}" stroke-width="${s.w || 2.4}" ${s.dash ? 'stroke-dasharray="5 5"' : ''} stroke-linejoin="round" stroke-linecap="round"/>` +
+      (s.end ? `<circle cx="${x(last)}" cy="${y(s.data[last])}" r="4" fill="${s.color}"/>` : '');
+  }).join('');
+  return `<svg class="chart" viewBox="0 0 ${w} ${h}" role="img" aria-label="${esc(unit)} grafiği">${g}${lines}</svg>`;
+}
+const legend = items => `<div class="legend">${items.map(([c, t]) => `<span><i style="background:${c}"></i>${esc(t)}</span>`).join('')}</div>`;
+function barRows(rows, { unit = 'kWh', max } = {}) {
+  const top = max || Math.max(...rows.map(r => r.baseline || r.actual), .001);
+  return rows.map(r => `<div class="bar-row"><span class="lab">${esc(r.label)}</span>
+    <div class="bar" role="img" aria-label="${esc(r.label)}: ${fmt(r.actual)} ${unit}">${r.baseline != null ? `<i class="base" style="width:${r.baseline / top * 100}%"></i>` : ''}<i class="act" style="width:${r.actual / top * 100}%"></i></div>
+    <span class="val">${fmt(r.actual)} ${unit}</span></div>`).join('');
+}
+const progress = (pct, label) => `<div class="bar" style="height:8px" role="img" aria-label="${esc(label || '')} %${pct}"><i class="act" style="width:${clamp(pct, 0, 100)}%"></i></div>`;
+
+/* =====================================================================
+   6. Paneller: her rol için widget kaydı. Başlık, genişlik, görünürlük ve sıra
+      Bilgi İşlem panelinden değiştirilir (CFG.panels[rol].widgets).
+   ===================================================================== */
+const W = { hoca: [], dekan: [], guvenlik: [], rektor: [] };
+
+function ctxFor(role) {
+  const panel = CFG.panels[role], now = nowMin(), day = dayKey(0);
+  const c = { role, panel, now, day };
+  c.st = room => {
+    const s = roomState(room, now, day);
+    if (role === 'hoca') {
+      const live = panel.courses.some(k => k.room === room.id && now >= toMin(k.s) && now < toMin(k.e));
+      if (live && ['kapandi', 'bekleme', 'kapali', 'unutulmus'].includes(s.phase)) {   // ders saatinde kapatma yok
+        const b = (TYPES[room.type] || TYPES.derslik).base * .8;
+        return { ...s, phase: 'dolu', people: isL1(room) ? Math.round(room.capacity * .55) : 1, kw: b, baselineKw: b, light: true };
+      }
+    }
+    return s;
+  };
+  return c;
+}
+const facultyRooms = c => CFG.rooms.filter(r => r.building === c.panel.building);
+const pendingFor = rooms => RT.requests.filter(q => q.type === 'mesai' && q.status === 'bekliyor' && rooms.some(r => r.id === q.room));
+const kpi = (label, value, sub) => `<div class="kpi"><span>${esc(label)}</span><b>${value}</b><small>${sub || ''}</small></div>`;
+const roomOpts = (rooms, sel) => rooms.map(r => `<option value="${r.id}" ${r.id === sel ? 'selected' : ''}>${esc(r.name)} · ${esc(buildingName(r.building))}</option>`).join('');
+const reqStatus = s => s === 'onaylandi' ? pill('Onaylandı', 'ok') : s === 'reddedildi' ? pill('Reddedildi', 'crit') : s === 'cozuldu' ? pill('Çözüldü', 'ok') : pill('Bekliyor', 'warn');
+const reqType = t => t === 'mesai' ? 'Mesai dışı çalışma izni' : 'Arıza bildirimi';
+const emptyState = t => `<div class="empty">${esc(t)}</div>`;
+
+/* ----- Öğretim üyesi ----- */
+W.hoca.push({
+  id: 'schedule', title: 'Bugünkü derslerim', span: 12,
+  meta: c => 'Ders saatinde oda kapatılmaz; müdahalede oda ' + CFG.params.manualHoldMin / 60 + ' saat manuel modda kalır',
+  render: c => {
+    const rows = c.panel.courses.map(k => {
+      const room = roomById(k.room); if (!room) return '';
+      const st = c.st(room), s = toMin(k.s), e = toMin(k.e), active = c.now >= s && c.now < e;
+      const when = c.now < s ? pill('Başlamadı') : active ? pill('Devam ediyor', 'ok') : pill('Bitti');
+      const held = RT.holds[room.id] > c.now;
+      return `<tr><td><b>${esc(k.name)}</b><span class="sub">${esc(k.code)} · ${esc(k.s)}–${esc(k.e)}</span></td>
+        <td>${esc(room.name)}<span class="sub">${esc(floorName(room.floor))}</span></td>
+        <td>${when}<span class="sub">${phasePill(st)}</span></td>
+        <td><div class="actions"><button class="btn sm" data-act="hold" data-room="${room.id}" ${held ? 'disabled' : ''}>${held ? 'Manuel mod açık' : 'Kapatmayı ertele'}</button>
+        <button class="btn sm" data-act="wrongclose" data-room="${room.id}">Yanlış kapatma bildir</button></div></td></tr>`;
+    }).join('');
+    return `<div class="tbl-wrap"><table class="tbl"><thead><tr><th>Ders</th><th>Oda</th><th>Durum</th><th>İşlem</th></tr></thead><tbody>${rows}</tbody></table></div>`;
+  }
+});
+W.hoca.push({
+  id: 'rooms', title: 'Odalarım', span: 7,
+  render: c => `<ul class="list">${c.panel.rooms.map(id => {
+    const room = roomById(id); if (!room) return '';
+    const st = c.st(room), l1 = isL1(room), sp = RT.setpoints[id] || 22;
+    return `<li><div style="min-width:0"><div class="t">${esc(room.name)}</div>
+      <div class="s num">${st.temp.toLocaleString('tr-TR')} °C, CO₂ ${st.co2} ppm, ışık ${st.light ? 'açık' : 'kapalı'}${l1 ? ', ' + st.people + ' kişi' : ', kamerasız alan'}</div>
+      </div>
+      <div style="display:grid;gap:8px;justify-items:end">${phasePill(st)}
+      <span class="stepper"><button class="btn sm" data-act="setpoint" data-room="${id}" data-d="-1" aria-label="Hedef sıcaklığı düşür">−</button><b>${sp} °C</b><button class="btn sm" data-act="setpoint" data-room="${id}" data-d="1" aria-label="Hedef sıcaklığı artır">+</button></span></div></li>`;
+  }).join('')}</ul>`
+});
+W.hoca.push({
+  id: 'request', title: 'Talep ve bildirim', span: 5,
+  render: c => {
+    const mine = RT.requests.filter(q => q.who === 'Öğretim Üyesi');
+    const rooms = CFG.rooms.filter(r => isL1(r) || c.panel.rooms.includes(r.id));
+    return `<form class="form" data-form="request">
+      <div class="row2"><label class="field"><span>Talep türü</span><select id="rq-type" name="type"><option value="mesai">Mesai dışı izin</option><option value="ariza">Arıza bildirimi</option></select></label>
+      <label class="field"><span>Oda</span><select id="rq-room" name="room">${rooms.map(r => `<option value="${r.id}">${esc(r.name)}</option>`).join('')}</select></label></div>
+      <div class="row2"><label class="field"><span>Başlangıç</span><input id="rq-start" name="start" type="time" value="18:00"></label><label class="field"><span>Bitiş</span><input id="rq-end" name="end" type="time" value="21:00"></label></div>
+      <label class="field"><span>Açıklama</span><textarea id="rq-text" name="text" rows="2" style="min-height:60px" placeholder="Örn. Bitirme projesi çalışması"></textarea></label>
+      <div><button class="btn primary" type="submit">Talebi gönder</button></div></form>
+      ${mine.length ? `<ul class="list" style="margin-top:24px">${mine.map(q => `<li><div><div class="t">${reqType(q.type)}</div><div class="s">${esc((roomById(q.room) || {}).name)}${q.start ? ' · ' + q.start + '–' + q.end : ''}</div></div>${reqStatus(q.status)}</li>`).join('')}</ul>` : ''}`;
+  }
+});
+W.hoca.push({
+  id: 'notif', title: 'Bildirimlerim', span: 12, meta: () => 'Telegram botundan da ulaşılır',
+  render: c => {
+    const ev = eventsFor(c.panel.rooms.map(roomById).filter(Boolean).filter(isL1), c.now, 5);
+    return ev.length ? `<ul class="list">${ev.map(e => { const [t, k] = eventText(e); return `<li><div><div class="t">${esc(t)}</div><div class="s num">${hhmm(e.t)}</div></div>${pill(k === 'crit' ? 'Alarm' : k === 'warn' ? 'Uyarı' : 'Bilgi', k)}</li>`; }).join('')}</ul>` : emptyState('Bugün odalarınız için bildirim yok.');
+  }
+});
+
+/* ----- Dekan ----- */
+W.dekan.push({
+  id: 'kpi', title: 'Özet', span: 12, bare: true,
+  render: c => {
+    const rooms = facultyRooms(c), t = totals(rooms, c.day, c.now);
+    const open = currentAlarms(rooms.filter(isL1), c.now).filter(a => !RT.alarms[a.key]).length;
+    return `<div class="kpis">${kpi('Bugünkü tüketim', fmt(t.actual) + ' kWh', esc(c.panel.unit))}
+      ${kpi('Önlenen israf', fmt(t.saved) + ' kWh', '≈ ' + tl(t.saved * CFG.params.tariff))}
+      ${kpi('Açık alarm', fmt(open), open ? 'güvenliğe iletildi' : 'yok')}
+      ${kpi('Onay bekleyen', fmt(pendingFor(rooms).length), 'mesai dışı çalışma talebi')}</div>`;
+  }
+});
+W.dekan.push({
+  id: 'floors', title: 'Kat bazlı tüketim, bugün', span: 6, meta: () => 'Özel alanlar yalnızca kat toplamında',
+  render: c => {
+    const rooms = facultyRooms(c), floors = [...new Set(rooms.map(r => r.floor))].sort();
+    const rows = floors.map(f => { const t = totals(rooms.filter(r => r.floor === f), c.day, c.now); return { label: floorName(f), actual: t.actual, baseline: t.baseline }; });
+    return barRows(rows) + legend([['var(--accent)', 'Gerçekleşen'], ['var(--base)', 'Sistem olmadan tahmini']]);
+  }
+});
+W.dekan.push({
+  id: 'trend', title: 'Son 7 günlük tüketim', span: 6, meta: () => 'kWh / gün',
+  render: c => {
+    const w = weekSeries(facultyRooms(c));
+    return lineChart([{ data: w.map(d => d.baseline), color: 'var(--muted)', dash: true, w: 2 }, { data: w.map(d => d.actual), color: 'var(--accent)', end: true }], w.map(d => d.label), { unit: 'kWh' }) +
+      legend([['var(--muted)', 'Sistem olmadan tahmini'], ['var(--accent)', 'Gerçekleşen']]);
+  }
+});
+W.dekan.push({
+  id: 'approvals', title: 'Onay bekleyen talepler', span: 6,
+  render: c => {
+    const rooms = facultyRooms(c), all = RT.requests.filter(q => q.type === 'mesai' && rooms.some(r => r.id === q.room));
+    const pend = all.filter(q => q.status === 'bekliyor'), done = all.filter(q => q.status !== 'bekliyor').slice(0, 3);
+    const item = q => `<li><div><div class="t">${esc((roomById(q.room) || {}).name)} · ${esc(q.start)}–${esc(q.end)}</div><div class="s">${esc(q.who)}: ${esc(q.text)}</div></div>
+      ${q.status === 'bekliyor' ? `<div class="actions"><button class="btn sm primary" data-act="decide" data-id="${q.id}" data-v="onaylandi">Onayla</button><button class="btn sm" data-act="decide" data-id="${q.id}" data-v="reddedildi">Reddet</button></div>` : reqStatus(q.status)}</li>`;
+    return pend.length || done.length ? `<ul class="list">${pend.map(item).join('')}${done.map(item).join('')}</ul>` : emptyState('Bekleyen talep yok.');
+  }
+});
+W.dekan.push({
+  id: 'anomaly', title: 'Uyarılar', span: 6,
+  render: c => {
+    const ev = eventsFor(facultyRooms(c).filter(isL1), c.now, 5);
+    return ev.length ? `<ul class="list">${ev.map(e => { const [t, k] = eventText(e); return `<li><div><div class="t">${esc(t)}</div><div class="s num">${hhmm(e.t)}</div></div>${pill(k === 'crit' ? 'Alarm' : k === 'warn' ? 'Uyarı' : 'Bilgi', k)}</li>`; }).join('')}</ul>` : emptyState('Bugün uyarı yok.');
+  }
+});
+W.dekan.push({
+  id: 'rooms', title: 'Toplu kullanım alanları', span: 12, meta: () => 'Yalnızca kişi sayısı, kimlik yok',
+  render: c => `<div class="tbl-wrap"><table class="tbl"><thead><tr><th>Alan</th><th>Durum</th><th class="r">Kişi</th><th class="r">Güç</th></tr></thead><tbody>${
+    facultyRooms(c).filter(isL1).map(r => { const s = c.st(r); return `<tr><td><b>${esc(r.name)}</b><span class="sub">${esc(floorName(r.floor))} · ${esc(TYPES[r.type].label)}</span></td><td>${phasePill(s)}</td><td class="r num">${s.people ?? '—'}</td><td class="r num">${fmt(kwNow(r, s), 1)} kW</td></tr>`; }).join('')}</tbody></table></div>`
+});
+function goalRows() {
+  const m = metrics(), P = CFG.params;
+  const row = (label, val, ok, target) => `<li><div><div class="t">${esc(label)}</div><div class="s">Hedef: ${esc(target)}</div></div><div style="text-align:right"><b class="num">${val}</b><div>${pill(ok ? 'Hedefte' : 'Hedef dışı', ok ? 'ok' : 'warn')}</div></div></li>`;
+  return `<ul class="list">${row('Yakalanan israf oranı', '%' + fmt(m.capture), m.capture >= P.captureTarget, '%' + P.captureTarget + ' ve üzeri')}
+    ${row('Yanlış kapatma (son 7 gün)', fmt(m.wrongClose), m.wrongClose < P.falseCloseTarget, 'haftada ' + P.falseCloseTarget + ' altı')}
+    ${row('Alarm yakalama süresi', fmt(m.response, 1) + ' dk', m.response < P.alarmTargetMin, P.alarmTargetMin + ' dakika altı')}
+    ${row('Boşta çalışan oda-saat (bugün)', fmt(m.idleHours, 1) + ' sa', m.idleHours < 6, '6 saat altı (varsayım)')}</ul>`;
+}
+
+/* ----- Güvenlik ----- */
+W.guvenlik.push({
+  id: 'status', title: 'Durum', span: 12, bare: true,
+  render: c => {
+    const al = currentAlarms(CFG.rooms, c.now), open = al.filter(a => !RT.alarms[a.key]).length;
+    const permits = RT.requests.filter(q => q.type === 'mesai' && q.status === 'onaylandi');
+    const work = isWork(c.now);
+    return `<div class="kpis">${kpi('Çalışma modu', work ? 'Normal mesai' : 'Güvenlik modu', work ? 'yalnızca sayım, kayıt yok' : `${esc(CFG.params.workEnd)}–${esc(CFG.params.workStart)}`)}
+      ${kpi('Açık alarm', fmt(open), open ? 'müdahale bekliyor' : 'yok')}
+      ${kpi('İzinli çalışma', fmt(permits.length), 'bugün onaylı')}
+      ${kpi('Çevrimdışı düğüm', fmt(Object.values(RT.nodesOff).filter(Boolean).length), 'güvenli varsayılan açık')}</div>`;
+  }
+});
+W.guvenlik.push({
+  id: 'alarms', title: 'Aktif alarmlar', span: 12, meta: () => 'İki ardışık kare, 30 sn doğrulama',
+  render: c => {
+    const al = currentAlarms(CFG.rooms, c.now);
+    if (!al.length) return emptyState(isWork(c.now) ? 'Normal mesaide alarm üretilmez. Güvenlik modu ' + CFG.params.workEnd + ' itibarıyla başlar.' : 'Bu saatte aktif alarm yok.');
+    return `<div class="tbl-wrap"><table class="tbl"><thead><tr><th>Saat</th><th>Alan</th><th>Kanıt</th><th>Durum</th><th></th></tr></thead><tbody>${al.map(a => {
+      const h = RT.alarms[a.key], l1 = isL1(a.room);
+      const state = h ? pill({ devriye: 'Devriye gönderildi', yanlis: 'Yanlış alarm', onay: 'Onaylandı' }[h.v], h.v === 'yanlis' ? 'neutral' : 'ok') : pill('Bekliyor', 'crit');
+      return `<tr><td class="num"><b>${hhmm(a.st.det)}</b></td><td><b>${esc(a.room.name)}</b><span class="sub">${esc(buildingName(a.room.building))} · ${esc(floorName(a.room.floor))}</span></td>
+        <td>${l1 ? `Kamera, güven %${a.st.conf}<span class="sub">Seviye 1</span>` : `PIR + mmWave<span class="sub">Seviye 0, görüntü yok</span>`}</td><td>${state}</td>
+        <td><div class="actions"><button class="btn sm" data-act="alarm-open" data-room="${a.room.id}">İncele</button>${h ? '' : `<button class="btn sm primary" data-act="alarm-do" data-key="${a.key}" data-v="devriye">Devriye gönder</button>`}</div></td></tr>`;
+    }).join('')}</tbody></table></div>`;
+  }
+});
+W.guvenlik.push({
+  id: 'permits', title: 'İzinli çalışmalar', span: 5,
+  render: c => {
+    const p = RT.requests.filter(q => q.type === 'mesai' && q.status === 'onaylandi');
+    return p.length ? `<ul class="list">${p.map(q => `<li><div><div class="t">${esc((roomById(q.room) || {}).name)}</div><div class="s">${esc(q.who)} · ${esc(q.text)}</div></div><span class="num" style="white-space:nowrap">${esc(q.start)}–${esc(q.end)}</span></li>`).join('')}</ul>` : emptyState('Bugün onaylı izin kaydı yok.');
+  }
+});
+W.guvenlik.push({
+  id: 'buildings', title: 'Binalar ve güvenlik modu', span: 7, meta: () => 'Mod bina bazında değiştirilir',
+  render: c => `<div class="tbl-wrap"><table class="tbl"><thead><tr><th>Bina</th><th class="r">Alan</th><th class="r">Kullanımda</th><th class="r">Alarm</th><th>Güvenlik modu</th></tr></thead><tbody>${CFG.buildings.map(b => {
+    const rooms = CFG.rooms.filter(r => r.building === b.id), ph = rooms.map(r => roomState(r, c.now, c.day).phase);
+    const al = ph.filter(p => p === 'alarm').length;
+    return `<tr><td><b>${esc(b.name)}</b></td><td class="r num">${rooms.length}</td><td class="r num">${ph.filter(p => p === 'dolu').length}</td><td class="r num">${al ? `<span class="st crit">${al}</span>` : '0'}</td>
+      <td><select class="inl" aria-label="${esc(b.name)} güvenlik modu" data-act-change="secmode" data-b="${b.id}">${[['auto', 'Otomatik'], ['acik', 'Zorunlu açık'], ['kapali', 'Kapalı']].map(([v, l]) => `<option value="${v}" ${(RT.secMode[b.id] || 'auto') === v ? 'selected' : ''}>${l}</option>`).join('')}</select></td></tr>`; }).join('')}</tbody></table></div>`
+});
+W.guvenlik.push({
+  id: 'audit', title: 'Görüntü erişim kaydı', span: 12, meta: () => 'Her açılış kaydedilir',
+  render: () => {
+    const rows = RT.audit.filter(a => a.kind === 'goruntu');
+    return rows.length ? `<div class="tbl-wrap"><table class="tbl"><thead><tr><th>Saat</th><th>Kullanıcı</th><th>İşlem</th></tr></thead><tbody>${rows.map(a => `<tr><td class="num">${esc(a.t)}</td><td>${esc(a.who)}</td><td>${esc(a.text)}</td></tr>`).join('')}</tbody></table></div>` : emptyState('Henüz görüntü açılmadı. Alarm karesini açtığınızda kayıt burada görünür.');
+  }
+});
+
+/* ----- Rektör ----- */
+const savingOf = id => (CFG.scenarios.find(s => s.id === id) || CFG.scenarios[0]).saving;
+W.rektor.push({
+  id: 'kpi', title: 'Özet', span: 12, bare: true,
+  render: c => {
+    const P = CFG.params, sv = savingOf('gercekci'), t = totals(CFG.rooms, c.day, c.now);
+    const be = P.investment / (sv / 12);
+    return `<div class="kpis">${kpi('Yıllık tasarruf', tl(sv), 'gerçekçi senaryo')}
+      ${kpi('Geri ödeme', fmt(be, 0) + ' ay', 'yatırım ' + tl(P.investment))}
+      ${kpi('Bugünkü tüketim', fmt(t.actual) + ' kWh', '%' + fmt(t.saved / t.baseline * 100) + ' tasarruf')}
+      ${kpi('Önlenen CO₂', fmt(t.saved * P.co2Factor) + ' kg', 'bugün')}</div>`;
+  }
+});
+W.rektor.push({
+  id: 'payback', title: 'Kümülatif nakit akışı', span: 7, meta: () => 'TL, üç senaryo',
+  render: () => {
+    const inv = CFG.params.investment, yrs = [0, 1, 2, 3, 4, 5], col = { kotumser: 'var(--muted)', gercekci: 'var(--accent)', iyimser: 'var(--ok)' };
+    const series = CFG.scenarios.map(s => ({ data: yrs.map(y => s.saving * y - inv), color: col[s.id] || 'var(--ink)', w: s.id === 'gercekci' ? 3 : 2, end: true }));
+    return lineChart(series, yrs.map(y => y ? y + '. yıl' : 'Başlangıç'), { unit: 'TL' }) + legend(CFG.scenarios.map(s => [col[s.id] || 'var(--ink)', `${s.name}: yılda ${tl(s.saving)}, 5 yılda ${tl(s.saving * 5 - inv)}`])) +
+      `<p class="fn">TL rakamları varsayımdır; gerçek fatura ve ölçümle güncellenmelidir.</p>`;
+  }
+});
+W.rektor.push({
+  id: 'buildings', title: 'Bina bazlı tüketim, bugün', span: 5, meta: () => 'kWh',
+  render: c => barRows(CFG.buildings.map(b => { const t = totals(CFG.rooms.filter(r => r.building === b.id), c.day, c.now); return { label: b.name, actual: t.actual, baseline: t.baseline }; })) +
+    legend([['var(--accent)', 'Gerçekleşen'], ['var(--base)', 'Sistem olmadan tahmini']])
+});
+W.rektor.push({ id: 'metrics', title: 'Proje hedefleri', span: 7, render: () => goalRows() });
+W.rektor.push({
+  id: 'roadmap', title: 'Yol haritası', span: 5,
+  render: () => `<ul class="list">${CFG.roadmap.map(p => `<li style="display:grid;grid-template-columns:1fr auto;gap:8px 12px"><div><div class="t">${esc(p.name)} <span class="s">(${esc(p.period)})</span></div><div class="s">${esc(p.desc)}</div></div>
+    ${pill({ tamam: 'Tamamlandı', devam: 'Sürüyor', plan: 'Planlı' }[p.status] || p.status, p.status === 'tamam' ? 'ok' : p.status === 'devam' ? 'info' : 'neutral')}<div style="grid-column:1/-1">${progress(p.progress, p.name)}</div></li>`).join('')}</ul>`
+});
+W.rektor.push({
+  id: 'decisions', title: 'Karar bekleyenler', span: 7,
+  render: () => `<ul class="list">${CFG.decisions.map(d => { const v = RT.decisions[d.id];
+    return `<li><div><div class="t">${esc(d.title)}</div><div class="s">${esc(d.detail)}</div></div>${v ? pill(v === 'onay' ? 'Onaylandı' : 'Ertelendi', v === 'onay' ? 'ok' : 'neutral') : `<div class="actions"><button class="btn sm primary" data-act="decision" data-id="${d.id}" data-v="onay">Onayla</button><button class="btn sm" data-act="decision" data-id="${d.id}" data-v="ertele">Ertele</button></div>`}</li>`; }).join('')}</ul>`
+});
+W.rektor.push({
+  id: 'privacy', title: 'Gizlilik ve KVKK', span: 5,
+  render: () => `<ul class="list">${CFG.privacy.map(p => {
+    let ok = p.state === 'ok';
+    if (p.state.startsWith('decision:')) ok = RT.decisions[p.state.slice(9)] === 'onay';
+    return `<li><div class="t" style="font-weight:500">${esc(p.text)}</div>${ok ? pill('Tamam', 'ok') : pill('Karar bekliyor', 'warn')}</li>`; }).join('')}</ul>`
+});
+
+/* Kayıtlı yapılandırma ile kayıt defterini uzlaştır (yeni widget eklenirse görünür) */
+function reconcile() {
+  for (const role of Object.keys(W)) {
+    const p = CFG.panels[role], defs = W[role], list = (p.widgets || []).filter(w => defs.some(d => d.id === w.id));
+    for (const d of defs) if (!list.some(w => w.id === d.id)) list.push({ id: d.id, visible: true, title: d.bare ? '' : d.title, span: d.span });
+    p.widgets = list;
+  }
+}
+
+/* =====================================================================
+   7. Bilgi İşlem paneli (geliştirici): düğümler, kurallar, logolar, paneller, kullanıcılar
+   ===================================================================== */
+const BI_TABS = [['overview', 'Genel bakış'], ['devices', 'Düğümler'], ['rules', 'Kurallar ve eşikler'], ['brand', 'Görünüm ve logolar'], ['panels', 'Paneller ve yetkiler'],
+  ['content', 'İçerik'], ['rooms', 'Alanlar'], ['users', 'Kullanıcılar'], ['logs', 'Kayıtlar'], ['config', 'Yapılandırma']];
+const SPANS = [[4, 'Dar (4)'], [5, 'Dar+ (5)'], [6, 'Yarım (6)'], [7, 'Geniş (7)'], [8, 'Geniş+ (8)'], [12, 'Tam (12)']];
+
+const fld = (label, path, type = 'text', extra = '') => `<label class="field"><span>${esc(label)}</span><input type="${type}" value="${esc(getPath(CFG, path))}" data-bind="${path}" data-type="${type}" ${extra}></label>`;
+const sel = (label, path, opts, extra = '') => `<label class="field"><span>${esc(label)}</span><select data-bind="${path}" ${extra}>${opts.map(([v, l]) => `<option value="${esc(v)}" ${String(getPath(CFG, path)) === String(v) ? 'selected' : ''}>${esc(l)}</option>`).join('')}</select></label>`;
+const chk = (label, path) => `<label class="check"><input type="checkbox" data-bind="${path}" ${getPath(CFG, path) ? 'checked' : ''}> ${esc(label)}</label>`;
+const section = (title, body, hint = '') => `<section class="card" style="--span:12"><header class="card-h"><h2>${esc(title)}</h2>${hint ? `<span class="meta">${esc(hint)}</span>` : ''}</header><div class="card-b">${body}</div></section>`;
+
+function nodeInfo(r) {
+  const h = hash(r.id);
+  return { id: 'MK-' + r.id.toUpperCase(), room: r, fw: 'v1.4.' + (h % 4), rssi: -42 - (h % 33), uptime: 3 + (h % 41), off: !!RT.nodesOff[r.id],
+    hw: isL1(r) ? 'ESP32 + Raspberry Pi kamera' : 'ESP32 (kamerasız)' };
+}
+
+function biOverview() {
+  const nodes = CFG.rooms.map(nodeInfo), on = nodes.filter(n => !n.off).length;
+  const down = Object.values(RT.serviceDown).filter(Boolean).length;
+  const faults = RT.requests.filter(q => q.type === 'ariza' && q.status === 'bekliyor');
+  return `<div class="grid">
+    <div class="bare"><div class="kpis">${kpi('Çevrimiçi düğüm', on + ' / ' + nodes.length, nodes.length - on ? 'arızalı düğümde ışık açık kalır' : 'tüm düğümler yanıt veriyor')}
+      ${kpi('Servisler', (CFG.services.length - down) + ' / ' + CFG.services.length, down ? 'durdurulmuş servis var' : 'hepsi çalışıyor')}
+      ${kpi('Açık arıza talebi', fmt(faults.length), 'kullanıcılardan gelen')}
+      ${kpi('Son veri', '12 sn', '30 sn özet, MQTT')}</div></div>
+    <section class="card" style="--span:7"><header class="card-h"><h2>Servisler</h2><span class="meta">5 katmanlı mimari</span></header><div class="card-b flush"><div class="tbl-wrap"><table class="tbl"><thead><tr><th>Servis</th><th>Durum</th><th class="r">Gecikme</th><th></th></tr></thead><tbody>${CFG.services.map(s => {
+      const d = RT.serviceDown[s.id];
+      return `<tr><td><b>${esc(s.name)}</b><span class="sub">${esc(s.detail)}</span></td><td>${d ? pill('Durduruldu', 'crit') : pill('Çalışıyor', 'ok')}</td><td class="r num">${d || !s.ms ? '—' : s.ms + ' ms'}</td>
+        <td><div class="actions"><button class="btn sm" data-act="svc-restart" data-id="${s.id}">Yeniden başlat</button><button class="btn sm" data-act="svc-toggle" data-id="${s.id}">${d ? 'Başlat' : 'Durdur'}</button></div></td></tr>`; }).join('')}</tbody></table></div></div></section>
+    <section class="card" style="--span:5"><header class="card-h"><h2>Arıza talepleri</h2><span class="meta">kullanıcı bildirimleri</span></header><div class="card-b flush">${faults.length ? `<ul class="list">${faults.map(q => `<li><div><div class="t">${esc((roomById(q.room) || {}).name)}</div><div class="s">${esc(q.text)} · ${esc(q.at)}</div></div><button class="btn sm primary" data-act="decide" data-id="${q.id}" data-v="cozuldu">Çözüldü</button></li>`).join('')}</ul>` : emptyState('Açık arıza talebi yok.')}</div></section></div>`;
+}
+function biDevices() {
+  return section('Düğümler', `<div class="tbl-wrap"><table class="tbl"><thead><tr><th>Düğüm</th><th>Alan</th><th>Donanım</th><th class="r">Sinyal</th><th class="r">Çalışma</th><th>Durum</th><th></th></tr></thead><tbody>${CFG.rooms.map(nodeInfo).map(n =>
+    `<tr><td class="num"><b>${esc(n.id)}</b><span class="sub">${n.fw}</span></td><td>${esc(n.room.name)}<span class="sub">${esc(buildingName(n.room.building))} · Seviye ${n.room.level}</span></td><td>${esc(n.hw)}</td>
+    <td class="r num">${n.rssi} dBm</td><td class="r num">${n.uptime} gün</td><td>${n.off ? pill('Devre dışı', 'warn') : pill('Çevrimiçi', 'ok')}</td>
+    <td><div class="actions"><button class="btn sm" data-act="node-restart" data-id="${n.room.id}">Yeniden başlat</button><button class="btn sm" data-act="node-toggle" data-id="${n.room.id}">${n.off ? 'Etkinleştir' : 'Devre dışı bırak'}</button></div></td></tr>`).join('')}</tbody></table></div>`, 'devre dışı düğümde oda "arıza" durumuna geçer');
+}
+function biRules() {
+  return `<div class="grid">
+    ${section('Otomatik kapatma', `<div class="fgrid">${fld('Boş kalma süresi (dk)', 'params.emptyMinutes', 'number')}${fld('Manuel mod süresi (dk)', 'params.manualHoldMin', 'number')}${fld('CO₂ üst eşik (ppm)', 'params.co2High', 'number')}${fld('Anomali eşiği (kW)', 'params.anomalyKw', 'number', 'step="0.1"')}</div>`, 'sunumdaki varsayılan: 15 dk')}
+    ${section('Mesai ve güvenlik modu', `<div class="fgrid">${fld('Mesai başlangıcı', 'params.workStart', 'time')}${fld('Mesai bitişi', 'params.workEnd', 'time')}</div><p class="note" style="margin-top:12px">Mesai dışında Seviye 1 alanlar güvenlik modundadır. Değişiklik tüm panellerde anında görünür.</p>`)}
+    ${section('Proje hedefleri', `<div class="fgrid">${fld('Yakalanan israf hedefi (%)', 'params.captureTarget', 'number')}${fld('Yanlış kapatma hedefi (haftada altı)', 'params.falseCloseTarget', 'number')}${fld('Alarm yakalama süresi hedefi (dk)', 'params.alarmTargetMin', 'number')}</div>`)}
+    ${section('Maliyet varsayımları', `<div class="fgrid">${fld('Elektrik birim fiyatı (TL/kWh)', 'params.tariff', 'number', 'step="0.1"')}${fld('Emisyon faktörü (kg CO₂/kWh)', 'params.co2Factor', 'number', 'step="0.05"')}${fld('Pilot yatırım (TL)', 'params.investment', 'number')}${fld('Pilotun geçen ayı', 'params.pilotMonth', 'number')}</div>
+      <div class="fgrid" style="margin-top:14px">${CFG.scenarios.map((s, i) => fld(s.name + ': yıllık tasarruf (TL)', `scenarios.${i}.saving`, 'number')).join('')}</div>`, 'rakamlar varsayımdır')}</div>`;
+}
+function logoBlock(key, label, current, fallback) {
+  return `<div class="form"><b>${esc(label)}</b><div class="logo-prev">${current ? `<img alt="" src="${esc(current)}">` : fallback}</div>
+    <label class="field"><span>Görsel yükle (PNG, JPG veya SVG)</span><input type="file" accept="image/*" data-logo="${key}"></label>
+    <div><button class="btn sm" data-act="logo-clear" data-k="${key}" ${current ? '' : 'disabled'}>Varsayılana dön</button></div></div>`;
+}
+function biBrand() {
+  const b = CFG.brand;
+  return `<div class="grid">${section('Metinler ve renk', `<div class="fgrid">${fld('Sistem adı', 'brand.system')}${fld('Üniversite adı', 'brand.univ')}${fld('Alt başlık', 'brand.tagline')}${fld('Alt bilgi metni', 'brand.footer')}
+    <label class="field"><span>Vurgu rengi</span><input type="color" value="${esc(b.accent)}" data-bind="brand.accent"></label></div>`)}
+    ${section('Logolar', `<div class="row2">${logoBlock('logoSystem', 'Sistem logosu', b.logoSystem, systemMark())}${logoBlock('logoUniv', 'Üniversite logosu', b.logoUniv, '<span class="muted">Logo yüklenmedi</span>')}</div>
+      <p class="note" style="margin-top:12px">Üniversitenin resmî logosunu kurumsal kimlik kurallarına uygun dosyadan yükleyin. Görsel tarayıcıda küçültülür ve bu cihazda saklanır.</p>`)}</div>`;
+}
+function biPanels() {
+  const role = UI.biRole, p = CFG.panels[role], defs = W[role];
+  const roleOpts = ROLES.map(r => `<button data-act="bi-role" data-role="${r.id}" aria-pressed="${r.id === role}">${esc(r.name)}</button>`).join('');
+  const widgets = defs ? p.widgets.map((w, i) => { const d = defs.find(x => x.id === w.id);
+    return `<tr><td><label class="check"><input type="checkbox" data-bind="panels.${role}.widgets.${i}.visible" ${w.visible ? 'checked' : ''} aria-label="Görünür"></label></td>
+      <td><input type="text" value="${esc(w.title)}" data-bind="panels.${role}.widgets.${i}.title" ${d.bare ? 'disabled placeholder="(başlıksız özet)"' : ''} aria-label="Başlık"><span class="sub muted">${esc(w.id)}</span></td>
+      <td><select data-bind="panels.${role}.widgets.${i}.span" data-type="number" aria-label="Genişlik">${SPANS.map(([v, l]) => `<option value="${v}" ${w.span === v ? 'selected' : ''}>${l}</option>`).join('')}</select></td>
+      <td><div class="actions"><button class="btn sm" data-act="move-widget" data-role="${role}" data-i="${i}" data-dir="-1" aria-label="Yukarı taşı">${icon('up', 14)}</button><button class="btn sm" data-act="move-widget" data-role="${role}" data-i="${i}" data-dir="1" aria-label="Aşağı taşı">${icon('down', 14)}</button></div></td></tr>`; }).join('') : '';
+  const extra = role === 'hoca' ? `<div class="form"><b>Odalarım bölümünde görünen alanlar</b><div class="fgrid">${CFG.rooms.map(r => `<label class="check"><input type="checkbox" data-act-change="hoca-room" data-id="${r.id}" ${p.rooms.includes(r.id) ? 'checked' : ''}> ${esc(r.name)}</label>`).join('')}</div></div>`
+    : role === 'dekan' ? `<div class="fgrid">${sel('Fakülte binası', 'panels.dekan.building', CFG.buildings.map(b => [b.id, b.name]))}</div>` : '';
+  return `<div class="subtabs" role="group" aria-label="Rol seç">${roleOpts}</div><div class="grid">
+    ${section('Başlık ve kişi', `<div class="fgrid">${fld('Panel başlığı', `panels.${role}.title`)}${fld('Kullanıcı gösterimi', `panels.${role}.person`)}${fld('Birim', `panels.${role}.unit`)}</div>`)}
+    ${defs ? section('Panel bölümleri', `<div class="tbl-wrap"><table class="tbl"><thead><tr><th>Görünür</th><th>Başlık</th><th>Genişlik</th><th>Sıra</th></tr></thead><tbody>${widgets}</tbody></table></div>`, 'Sıra ve genişlik bu role özeldir') : ''}
+    ${extra ? section('Role özel ayarlar', extra) : ''}</div>`;
+}
+function listEditor(path, cols, addLabel) {
+  const items = getPath(CFG, path);
+  return `<div class="form">${items.map((it, i) => `<div class="fgrid" style="align-items:end;border-bottom:1px solid var(--line);padding-bottom:14px">${cols.map(c => c.opts
+    ? sel(c.label, `${path}.${i}.${c.k}`, typeof c.opts === 'function' ? c.opts() : c.opts, c.type === 'number' ? 'data-type="number"' : '')
+    : fld(c.label, `${path}.${i}.${c.k}`, c.type || 'text')).join('')}<div><button class="btn sm danger" data-act="list-del" data-path="${path}" data-i="${i}">${icon('trash', 14)} Sil</button></div></div>`).join('')}
+    <div><button class="btn sm" data-act="list-add" data-path="${path}">${icon('plus', 14)} ${esc(addLabel)}</button></div></div>`;
+}
+const roomOptions = () => CFG.rooms.map(r => [r.id, r.name]);
+function biContent() {
+  return `<div class="grid">
+    ${section('Öğretim üyesi ders programı', listEditor('panels.hoca.courses', [{ k: 'code', label: 'Kod' }, { k: 'name', label: 'Ders' }, { k: 'room', label: 'Oda', opts: roomOptions }, { k: 's', label: 'Başlangıç', type: 'time' }, { k: 'e', label: 'Bitiş', type: 'time' }], 'Ders ekle'), 'başlangıçta Excel/CSV, sonra otomatik içe aktarma')}
+    ${section('Yol haritası', listEditor('roadmap', [{ k: 'name', label: 'Faz' }, { k: 'period', label: 'Süre' }, { k: 'status', label: 'Durum', opts: [['tamam', 'Tamamlandı'], ['devam', 'Sürüyor'], ['plan', 'Planlı']] }, { k: 'progress', label: 'İlerleme (%)', type: 'number' }, { k: 'desc', label: 'Açıklama' }], 'Faz ekle'))}
+    ${section('Rektör kararları', listEditor('decisions', [{ k: 'title', label: 'Başlık' }, { k: 'detail', label: 'Ayrıntı' }], 'Karar ekle'))}
+    ${section('Gizlilik maddeleri', listEditor('privacy', [{ k: 'text', label: 'Madde' }, { k: 'state', label: 'Durum', opts: () => [['ok', 'Tamam'], ...CFG.decisions.map(d => ['decision:' + d.id, 'Karar: ' + d.title])] }], 'Madde ekle'), 'karar onaylanınca tamam olur')}</div>`;
+}
+function biRooms() {
+  const bOpts = () => CFG.buildings.map(b => [b.id, b.name]);
+  return `<div class="grid">${section('Binalar', listEditor('buildings', [{ k: 'name', label: 'Bina adı' }], 'Bina ekle'))}
+    ${section('Alanlar ve düğüm tipleri', `<div class="tbl-wrap"><table class="tbl"><thead><tr><th>Ad</th><th>Bina</th><th>Kat</th><th>Seviye</th><th>Tür</th><th>Kapasite</th><th></th></tr></thead><tbody>${CFG.rooms.map((r, i) => `<tr>
+      <td style="min-width:200px"><input value="${esc(r.name)}" data-bind="rooms.${i}.name" aria-label="Ad"></td>
+      <td><select data-bind="rooms.${i}.building" aria-label="Bina">${bOpts().map(([v, l]) => `<option value="${v}" ${r.building === v ? 'selected' : ''}>${esc(l)}</option>`).join('')}</select></td>
+      <td style="width:80px"><input type="number" value="${r.floor}" data-bind="rooms.${i}.floor" data-type="number" aria-label="Kat"></td>
+      <td><select data-bind="rooms.${i}.level" data-type="number" aria-label="Seviye"><option value="0" ${r.level == 0 ? 'selected' : ''}>0 · özel, kamerasız</option><option value="1" ${r.level == 1 ? 'selected' : ''}>1 · toplu kullanım</option></select></td>
+      <td><select data-bind="rooms.${i}.type" aria-label="Tür">${Object.entries(TYPES).map(([k, t]) => `<option value="${k}" ${r.type === k ? 'selected' : ''}>${esc(t.label)}</option>`).join('')}</select></td>
+      <td style="width:90px"><input type="number" value="${r.capacity}" data-bind="rooms.${i}.capacity" data-type="number" aria-label="Kapasite"></td>
+      <td><button class="btn sm danger" data-act="list-del" data-path="rooms" data-i="${i}" aria-label="Sil">${icon('trash', 14)}</button></td></tr>`).join('')}</tbody></table></div>
+      <div style="margin-top:28px"><button class="btn sm" data-act="list-add" data-path="rooms">${icon('plus', 14)} Alan ekle</button></div>`, 'Seviye 0 alanlarda kamera düğümü yoktur')}</div>`;
+}
+function biUsers() {
+  return section('Kullanıcılar ve roller', listEditor('users', [{ k: 'name', label: 'Ad' }, { k: 'role', label: 'Rol', opts: ROLES.map(r => [r.id, r.name]) }, { k: 'unit', label: 'Birim' }]
+    .concat([]), 'Kullanıcı ekle') + `<p class="note" style="margin-top:14px">Prototipte roller arasında serbest geçiş vardır. Canlı sistemde rol, üniversite kimlik doğrulamasından gelir ve her rol yalnızca kendi paneline erişir.</p>`);
+}
+function biLogs() {
+  return `<div class="grid">${section('İşlem kayıtları', RT.audit.length ? `<div class="tbl-wrap"><table class="tbl"><thead><tr><th>Saat</th><th>Kullanıcı</th><th>Tür</th><th>İşlem</th></tr></thead><tbody>${RT.audit.map(a => `<tr><td class="num">${esc(a.t)}</td><td>${esc(a.who)}</td><td>${pill(a.kind)}</td><td>${esc(a.text)}</td></tr>`).join('')}</tbody></table></div>` : emptyState('Kayıt yok.'), 'son 120 kayıt')}
+    <div class="bare"><button class="btn sm" data-act="clear-audit">Kayıtları temizle</button></div></div>`;
+}
+function biConfig() {
+  const json = JSON.stringify(CFG, null, 1);
+  return `<div class="grid">${section('Dışa aktar', `<label class="field"><span>Yapılandırma (JSON)</span><textarea id="cfg-out" readonly rows="8">${esc(json)}</textarea></label><div style="margin-top:12px"><button class="btn" data-act="export-copy">Panoya kopyala</button></div>`, 'logolar dahil')}
+    ${section('İçe aktar', `<label class="field"><span>JSON yapıştırın</span><textarea id="cfg-in" rows="6" placeholder="Dışa aktarılan yapılandırma"></textarea></label><div style="margin-top:12px"><button class="btn primary" data-act="import">Uygula</button></div>`)}
+    ${section('Sıfırlama', `<div class="actions"><button class="btn" data-act="clear-runtime">Talepleri ve alarm işlemlerini sıfırla</button>${UI.confirmReset ? `<button class="btn danger" data-act="reset-do">Evet, tüm ayarları varsayılana döndür</button><button class="btn" data-act="reset-cancel">Vazgeç</button>` : `<button class="btn danger" data-act="reset-ask">Ayarları varsayılana döndür</button>`}</div>
+      <p class="note" style="margin-top:12px">Değişiklikler bu tarayıcıda saklanır. Tüm ziyaretçilere kalıcı olarak uygulamak için dışa aktarılan yapılandırma sayfaya varsayılan olarak işlenmelidir.</p>`)}</div>`;
+}
+function viewBI() {
+  const views = { overview: biOverview, devices: biDevices, rules: biRules, brand: biBrand, panels: biPanels, content: biContent, rooms: biRooms, users: biUsers, logs: biLogs, config: biConfig };
+  return pageHead('bilgi-islem') + `<div class="subtabs" role="group" aria-label="Bölümler">${BI_TABS.map(([id, l]) => `<button data-act="bi-tab" data-tab="${id}" aria-pressed="${UI.biTab === id}">${esc(l)}</button>`).join('')}</div>${(views[UI.biTab] || biOverview)()}`;
+}
+
+/* =====================================================================
+   8. Kabuk: başlık, yönlendirme, modal, işlemler
+   ===================================================================== */
+const route = () => { const h = location.hash.slice(1); return ROLES.some(r => r.id === h) ? h : 'home'; };
+const who = () => { const r = route(); return r === 'home' ? 'Ziyaretçi' : roleName(r); };
+function systemMark() {
+  return `<svg class="mark" viewBox="0 0 36 36" width="36" height="36" aria-hidden="true"><rect width="36" height="36" rx="3" fill="var(--accent)"/><path d="M18 8l9 5v10l-9 5-9-5V13z" fill="none" stroke="#fff" stroke-width="1.8" stroke-linejoin="round"/><path d="M9 13l9 5 9-5M18 18v10" fill="none" stroke="#fff" stroke-width="1.8" stroke-linejoin="round"/></svg>`;
+}
+function sideHtml(r) {
+  const b = CFG.brand, item = (id, label) => `<a class="ni" href="#${id}" ${r === (id || 'home') ? 'aria-current="page"' : ''}>${esc(label)}</a>`;
+  return `<aside class="side"><a class="brand" href="#" aria-label="${esc(b.system)} ana sayfa">${b.logoSystem ? `<img alt="" src="${esc(b.logoSystem)}">` : systemMark()}
+    <span><b>${esc(b.system)}</b><small>${esc(b.univ)}</small></span></a>${b.logoUniv ? `<img class="univ" alt="${esc(b.univ)}" src="${esc(b.logoUniv)}">` : ''}
+    <nav class="nav" aria-label="Paneller">${item('', 'Genel bakış')}${ROLES.filter(x => x.id !== 'bilgi-islem').map(x => item(x.id, x.name)).join('')}<span class="gap"></span>${item('bilgi-islem', 'Bilgi İşlem')}</nav>
+    <label class="clock-sel">Simülasyon saati<select id="clock" data-act-change="clock">${CLOCKS.map(([v, l]) => `<option value="${v}" ${UI.clock === v ? 'selected' : ''}>${l}</option>`).join('')}</select></label></aside>`;
+}
+function pageHead(role) {
+  const p = CFG.panels[role], now = nowMin();
+  return `<div class="page-h"><div><h1>${esc(p.title)}</h1><p>${esc(p.person)}, ${esc(p.unit)}</p></div>
+    <div class="hd-r"><span class="num clock">${hhmm(now)}</span>${isWork(now) ? pill('Mesai', 'ok') : pill('Mesai dışı', 'neutral')}${role === 'dekan' ? '<button class="btn" data-act="modal" data-m="report">Haftalık rapor</button>' : ''}</div></div>`;
+}
+function viewRole(role) {
+  const c = ctxFor(role), defs = Object.fromEntries(W[role].map(d => [d.id, d]));
+  const cards = CFG.panels[role].widgets.filter(w => w.visible && defs[w.id]).map(w => {
+    const d = defs[w.id], body = d.render(c);
+    if (d.bare) return `<div class="bare">${body}</div>`;
+    return `<section class="card" style="--span:${w.span}"><header class="card-h"><h2>${esc(w.title || d.title)}</h2>${d.meta ? `<span class="meta">${esc(d.meta(c))}</span>` : ''}</header><div class="card-b">${body}</div></section>`;
+  }).join('');
+  return pageHead(role) + `<div class="grid">${cards || emptyState('Bu panelde görünür bölüm yok. Bilgi İşlem panelinden açabilirsiniz.')}</div>`;
+}
+function viewHome() {
+  const b = CFG.brand;
+  return `<div class="page-h"><div><h1>${esc(b.system)}</h1><p>${esc(b.tagline)}, ${esc(b.univ)}</p></div></div>
+    <ul class="rolelist">${ROLES.map(r => `<li><a href="#${r.id}"><span class="rn">${esc(r.name)}</span><span class="rb">${esc(r.blurb)}</span></a></li>`).join('')}</ul>
+    <p class="fn">Sunumdaki sistemin prototipidir; veriler simülasyondur. Soldaki saati değiştirerek gündüz, akşam ve gece davranışını görebilirsiniz. Bir panelde yapılan işlem (talep, onay, alarm) diğer panellerde de görünür.</p>`;
+}
+function modalHtml() {
+  const m = UI.modal; if (!m) return '';
+  if (m.type === 'alarm') {
+    const room = roomById(m.room); if (!room) return '';
+    const now = nowMin(), st = roomState(room, now), l1 = isL1(room), key = alarmKey(room, st);
+    const scene = `<svg viewBox="0 0 320 180" aria-hidden="true"><rect width="320" height="180" fill="#0B1226"/><path d="M0 140h320M0 152h320" stroke="#1B2848"/><g fill="#31456F"><circle cx="168" cy="72" r="11"/><rect x="154" y="86" width="28" height="52" rx="10"/></g>${m.revealed ? `<rect x="140" y="52" width="56" height="94" fill="none" stroke="#1FBF8B" stroke-width="1.5"/><text x="140" y="46" fill="#1FBF8B" font-size="9" font-family="Inter,sans-serif">kisi 1 · %${st.conf || 90}</text>` : ''}</svg>`;
+    const media = l1 ? (m.revealed ? `<div class="frame">${scene}</div><p class="muted num">Alarm karesi 1/2, şifreli saklanır, açılış kaydedildi</p>`
+      : `<div class="frame locked">${scene}<div class="lock">${icon('lock', 28)}<b>Şifreli alarm karesi</b><span>Yalnızca güvenlik personeli açabilir. Açılış kaydedilir.</span><button class="btn primary" data-act="reveal" data-room="${room.id}">${icon('eye', 16)} Görüntüyü aç</button></div></div>`)
+      : `<p class="note">Bu alan Seviye 0 özel alandır. Kamera yoktur; yalnızca PIR ve mmWave sensör alarmı iletilir, görüntü üretilmez.</p>`;
+    const h = RT.alarms[key];
+    return `<div class="modal" data-act="modal-bg"><div class="sheet" role="dialog" aria-modal="true" aria-label="Alarm ayrıntısı"><div><h2>${esc(room.name)}</h2><p class="muted">${esc(buildingName(room.building))} · ${esc(floorName(room.floor))}</p></div>
+      <dl class="kv"><dt>Saat</dt><dd class="num">${hhmm(st.det ?? now)}</dd><dt>Seviye</dt><dd>${l1 ? 'Seviye 1, kamera doğrulamalı' : 'Seviye 0, yalnızca sensör'}</dd><dt>Doğrulama</dt><dd>${l1 ? 'İki ardışık kare, 30 sn · güven %' + (st.conf || 90) : 'PIR + mmWave'}</dd><dt>İzin kaydı</dt><dd>Yok</dd></dl>${media}
+      <div class="actions">${h ? pill('İşlendi: ' + { devriye: 'devriye gönderildi', yanlis: 'yanlış alarm', onay: 'onaylandı' }[h.v], 'ok') : `<button class="btn primary" data-act="alarm-do" data-key="${key}" data-det="${st.det ?? now}" data-v="devriye">Devriye gönder</button><button class="btn" data-act="alarm-do" data-key="${key}" data-det="${st.det ?? now}" data-v="onay">Alarmı onayla</button><button class="btn" data-act="alarm-do" data-key="${key}" data-det="${st.det ?? now}" data-v="yanlis">Yanlış alarm</button>`}<button class="btn" data-act="modal-close">Kapat</button></div></div></div>`;
+  }
+  if (m.type === 'report') {
+    const c = ctxFor('dekan'), rooms = facultyRooms(c), w = weekSeries(rooms);
+    return `<div class="modal" data-act="modal-bg"><div class="sheet" role="dialog" aria-modal="true" aria-label="Haftalık rapor"><div><h2>Haftalık enerji raporu</h2><p class="muted">${esc(c.panel.unit)} · son 7 gün · bina ve kat bazlı</p></div>
+      <div class="tbl-wrap"><table class="tbl"><thead><tr><th>Gün</th><th class="r">Gerçekleşen</th><th class="r">Sistem olmadan</th><th class="r">Fark</th></tr></thead><tbody>${w.map(d => `<tr><td>${d.label}</td><td class="r num">${fmt(d.actual)} kWh</td><td class="r num">${fmt(d.baseline)} kWh</td><td class="r num">${fmt(d.baseline - d.actual)} kWh</td></tr>`).join('')}</tbody></table></div>
+      <p class="note">Tutarlar ${fmt(CFG.params.tariff, 1)} TL/kWh varsayımıyla hesaplanır. Kişi veya oda bazlı Seviye 0 verisi içermez.</p><div class="actions"><button class="btn primary" data-act="modal-close">Kapat</button></div></div></div>`;
+  }
+  return '';
+}
+function render() {
+  const y = window.scrollY, r = route();
+  const view = r === 'home' ? viewHome() : r === 'bilgi-islem' ? viewBI() : viewRole(r);
+  $('#app').innerHTML = `<div class="app">${sideHtml(r)}<main class="main">${view}<footer class="foot">${esc(CFG.brand.footer)}</footer></main></div>` + modalHtml();
+  window.scrollTo(0, y);
+}
+function toast(msg) {
+  const t = $('#toast'); t.textContent = msg; t.hidden = false;
+  clearTimeout(toast.id); toast.id = setTimeout(() => { t.hidden = true; }, 2600);
+}
+function applyBrand() { if (/^#[0-9a-f]{6}$/i.test(CFG.brand.accent)) document.documentElement.style.setProperty('--accent', CFG.brand.accent); }
+
+/* ----- işlemler (data-act) ----- */
+const NEW = {
+  'panels.hoca.courses': () => ({ code: 'DERS-101', name: 'Yeni ders', room: CFG.rooms[0].id, s: '09:00', e: '10:50' }),
+  roadmap: () => ({ id: uid('f'), name: 'Yeni faz', period: '', status: 'plan', progress: 0, desc: '' }),
+  decisions: () => ({ id: uid('d'), title: 'Yeni karar', detail: '' }),
+  privacy: () => ({ id: uid('p'), text: 'Yeni madde', state: 'ok' }),
+  rooms: () => ({ id: uid('oda-'), name: 'Yeni alan', building: CFG.buildings[0].id, floor: 0, level: 1, type: 'derslik', capacity: 30 }),
+  buildings: () => ({ id: uid('b'), name: 'Yeni bina' }),
+  users: () => ({ id: uid('u'), name: 'Yeni kullanıcı', role: 'hoca', unit: '', active: true })
+};
+const A = {
+  hold(d) { RT.holds[d.room] = nowMin() + CFG.params.manualHoldMin; audit(who(), 'oda', `${roomById(d.room).name}: kapatma ertelendi (manuel mod)`); toast('Oda manuel moda alındı, otomatik kapatma durdu'); },
+  wrongclose(d) { RT.wrongClose.push({ day: dayKey(0), room: d.room }); RT.holds[d.room] = nowMin() + CFG.params.manualHoldMin; audit(who(), 'oda', `${roomById(d.room).name}: yanlış kapatma bildirildi`); toast('Bildirim alındı. Eşikler yeniden gözden geçirilecek'); },
+  setpoint(d) { RT.setpoints[d.room] = clamp((RT.setpoints[d.room] || 22) + Number(d.d), 16, 28); },
+  decide(d) { const q = RT.requests.find(x => x.id === d.id); if (!q) return; q.status = d.v; q.by = who();
+    audit(who(), 'talep', `${reqType(q.type)} ${{ onaylandi: 'onaylandı', reddedildi: 'reddedildi', cozuldu: 'çözüldü' }[d.v]}: ${(roomById(q.room) || {}).name}`);
+    toast(d.v === 'onaylandi' ? 'Onaylandı. İzin kaydı güvenlik paneline işlendi' : d.v === 'cozuldu' ? 'Arıza kaydı kapatıldı' : 'Talep reddedildi'); },
+  'alarm-open'(d) { UI.modal = { type: 'alarm', room: d.room, revealed: false }; },
+  'alarm-do'(d) { RT.alarms[d.key] = { v: d.v, at: nowMin(), by: who() }; if (d.det) RT.responseTimes.push(clamp(nowMin() - Number(d.det), 1, 25));
+    audit(who(), 'alarm', `${{ devriye: 'Devriye gönderildi', onay: 'Alarm onaylandı', yanlis: 'Yanlış alarm olarak işaretlendi' }[d.v]}`); UI.modal = null; toast('Alarm işlendi'); },
+  reveal(d) { UI.modal.revealed = true; audit(who(), 'goruntu', `${roomById(d.room).name} alarm karesi açıldı`); },
+  modal(d) { UI.modal = { type: d.m }; },
+  'modal-close'() { UI.modal = null; },
+  decision(d) { RT.decisions[d.id] = d.v; audit(who(), 'karar', `${(CFG.decisions.find(x => x.id === d.id) || {}).title}: ${d.v === 'onay' ? 'onaylandı' : 'ertelendi'}`); toast(d.v === 'onay' ? 'Karar onaylandı' : 'Karar ertelendi'); },
+  'bi-tab'(d) { UI.biTab = d.tab; UI.confirmReset = false; },
+  'bi-role'(d) { UI.biRole = d.role; },
+  'list-add'(d) { getPath(CFG, d.path).push(NEW[d.path]()); reconcile(); },
+  'list-del'(d) { getPath(CFG, d.path).splice(Number(d.i), 1); },
+  'move-widget'(d) { const l = CFG.panels[d.role].widgets, i = Number(d.i), j = i + Number(d.dir); if (j >= 0 && j < l.length) [l[i], l[j]] = [l[j], l[i]]; },
+  'node-restart'(d) { audit(who(), 'düğüm', `${roomById(d.id).name}: düğüm yeniden başlatıldı`); toast('Yeniden başlatma komutu gönderildi'); },
+  'node-toggle'(d) { RT.nodesOff[d.id] = !RT.nodesOff[d.id]; audit(who(), 'düğüm', `${roomById(d.id).name}: düğüm ${RT.nodesOff[d.id] ? 'devre dışı bırakıldı' : 'etkinleştirildi'}`); },
+  'svc-restart'(d) { audit(who(), 'servis', `${CFG.services.find(s => s.id === d.id).name} yeniden başlatıldı`); toast('Servis yeniden başlatıldı'); },
+  'svc-toggle'(d) { RT.serviceDown[d.id] = !RT.serviceDown[d.id]; audit(who(), 'servis', `${CFG.services.find(s => s.id === d.id).name} ${RT.serviceDown[d.id] ? 'durduruldu' : 'başlatıldı'}`); },
+  'logo-clear'(d) { CFG.brand[d.k] = null; },
+  'export-copy'() { const t = $('#cfg-out'); t.select(); (navigator.clipboard ? navigator.clipboard.writeText(t.value) : Promise.reject()).then(() => toast('Kopyalandı'), () => toast('Metin seçildi, Ctrl+C ile kopyalayın')); return 'keep'; },
+  import() { try { const v = JSON.parse($('#cfg-in').value); CFG = merge(clone(DEFAULTS), v); reconcile(); applyBrand(); toast('Yapılandırma uygulandı'); } catch { toast('Geçerli bir JSON değil'); return 'keep'; } },
+  'reset-ask'() { UI.confirmReset = true; },
+  'reset-cancel'() { UI.confirmReset = false; },
+  'reset-do'() { CFG = clone(DEFAULTS); reconcile(); UI.confirmReset = false; applyBrand(); toast('Varsayılan ayarlar yüklendi'); },
+  'clear-runtime'() { RT = freshRuntime(); toast('Talepler ve alarm işlemleri sıfırlandı'); },
+  'clear-audit'() { RT.audit = []; }
+};
+const CHANGE = {
+  clock(el) { UI.clock = el.value; el.blur(); },
+  secmode(el) { RT.secMode[el.dataset.b] = el.value; audit(who(), 'güvenlik', `${buildingName(el.dataset.b)}: güvenlik modu ${el.options[el.selectedIndex].text}`); },
+  'hoca-room'(el) { const l = CFG.panels.hoca.rooms, id = el.dataset.id, i = l.indexOf(id); if (el.checked && i < 0) l.push(id); if (!el.checked && i >= 0) l.splice(i, 1); }
+};
+const persist = () => { saveCfg(); saveRt(); saveUi(); };
+
+document.addEventListener('click', e => {
+  const el = e.target.closest('[data-act]'); if (!el || el.matches('select,input')) return;
+  if (el.dataset.act === 'modal-bg' && e.target !== el) return;       // arka plana tıklayınca kapat
+  const fn = A[el.dataset.act === 'modal-bg' ? 'modal-close' : el.dataset.act]; if (!fn) return;
+  const r = fn(el.dataset); persist(); if (r !== 'keep') render();
+});
+document.addEventListener('change', e => {
+  const el = e.target;
+  if (el.dataset.logo) {
+    const f = el.files && el.files[0]; if (!f) return;
+    logoFromFile(f).then(url => { CFG.brand[el.dataset.logo] = url; persist(); render(); toast('Logo güncellendi'); }, () => toast('Görsel okunamadı'));
+    return;
+  }
+  if (el.dataset.actChange) { CHANGE[el.dataset.actChange](el); persist(); render(); return; }
+  if (el.dataset.bind) {
+    const v = el.type === 'checkbox' ? el.checked : el.dataset.type === 'number' ? Number(el.value) : el.value;
+    setPath(CFG, el.dataset.bind, v); persist();
+    if (el.dataset.bind.startsWith('brand.')) { applyBrand(); $('.side').outerHTML = sideHtml(route()); }
+  }
+});
+document.addEventListener('submit', e => {
+  const f = e.target.closest('[data-form="request"]'); if (!f) return; e.preventDefault();
+  const d = Object.fromEntries(new FormData(f));
+  if (d.type === 'mesai' && toMin(d.end) <= toMin(d.start)) { toast('Bitiş saati başlangıçtan sonra olmalı'); return; }
+  RT.requests.unshift({ id: uid('r'), type: d.type, room: d.room, who: 'Öğretim Üyesi', start: d.start, end: d.end, text: d.text.trim() || 'Açıklama girilmedi', status: 'bekliyor', at: hhmm(nowMin()) });
+  audit(who(), 'talep', `${reqType(d.type)} gönderildi: ${roomById(d.room).name}`);
+  toast(d.type === 'mesai' ? 'Talep dekanlığa iletildi' : 'Arıza bildirimi Bilgi İşlem birimine iletildi');
+  persist(); render();
+});
+document.addEventListener('keydown', e => { if (e.key === 'Escape' && UI.modal) { UI.modal = null; render(); } });
+window.addEventListener('hashchange', () => { UI.modal = null; render(); window.scrollTo(0, 0); });
+
+function logoFromFile(file) {
+  return new Promise((res, rej) => {
+    const fr = new FileReader(); fr.onerror = rej;
+    fr.onload = () => { const img = new Image(); img.onerror = rej;
+      img.onload = () => { const w = img.naturalWidth || 300, h = img.naturalHeight || 300, k = Math.min(1, 320 / Math.max(w, h));
+        const c = document.createElement('canvas'); c.width = Math.max(1, Math.round(w * k)); c.height = Math.max(1, Math.round(h * k));
+        c.getContext('2d').drawImage(img, 0, 0, c.width, c.height); res(c.toDataURL('image/png')); };
+      img.src = fr.result; };
+    fr.readAsDataURL(file);
+  });
+}
+
+/* canlı güncelleme: form alanı açıkken veya pencere açıkken ekranı yenileme */
+function tick() {
+  const a = document.activeElement;
+  if (UI.modal || (a && a.matches('input,textarea,select'))) return;
+  if (route() === 'bilgi-islem' && ['rules', 'brand', 'panels', 'content', 'rooms', 'users', 'config'].includes(UI.biTab)) return;
+  render();
+}
+
+/* ----- başlat ----- */
+reconcile(); applyBrand(); render();
+setInterval(tick, 10000);
+})();
+</script>
+
+</body></html>
